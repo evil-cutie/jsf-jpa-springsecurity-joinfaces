@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserServiceInterface {
         userRepository.delete(user);
     }
 
+    @Override
+    public User findByUsername(String username) { return userRepository.findByUsername(username).orElse(null); }
+
     public void updateUser(User user) {
         userRepository.save(user);
     }

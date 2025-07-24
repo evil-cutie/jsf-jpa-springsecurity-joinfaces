@@ -2,7 +2,6 @@
 <html xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
       xmlns:p="primefaces">
-
 <h:head>
     <title>Login</title>
     <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
@@ -18,22 +17,23 @@
         <div class="flex align-items-center justify-content-center">
             <div class="surface-card p-4 shadow-2 border-round w-full lg:w-3 md:w-7">
                 <div class="text-center mb-5">
-                    <div class="text-900 text-3xl font-medium mb-3">Welcome</div>
+                    <div class="text-900 text-3xl font-medium mb-3">Registration</div>
                 </div>
-
                 <div>
                     <h:form prependId="false">
                         <label for="email" class="block text-900 font-medium mb-2">Email</label>
                         <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true" styleClass="w-full mb-3"/>
                         <label for="username" class="block text-900 font-medium mb-2">Username</label>
                         <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true" styleClass="w-full mb-3"/>
-                        <label for="password" class="block text-900 font-medium mb-2">Password</label>
-                        <p:password id="password" value="#{userMB.registrationUser.password}" required="true" styleClass="w-full mb-3"/>
-                        <label for="repeatPassword" class="block text-900 font-medium mb-2">Repeat password</label>
-                        <p:password id="repeatPassword" styleClass="w-full mb-3"/>
-
-                        <p:commandButton id="signUp" value="Sign up" icon="pi pi-check" action="#{userMB.register()}"
-                                          styleClass="w-full"/>
+                        <label for="password-1" class="block text-900 font-medium mb-2">Password</label>
+                        <p:password id="password-1" value="#{userMB.registrationUser.password}" match="password-2" required="true" styleClass="w-full mb-3"/>
+                        <label for="password-2" class="block text-900 font-medium mb-2">Repeat password</label>
+                        <p:password id="password-2" value="#{userMB.registrationUser.password}" required="true" styleClass="w-full mb-3"/>
+                        <p:commandButton id="signUp" value="Sign up" action="#{userMB.register()}"
+                                         icon="pi pi-check" styleClass="w-full mb-3"/>
+                        <p:messages id="messages" showDetail="true">
+                            <p:autoUpdate/>
+                        </p:messages>
                     </h:form>
                 </div>
             </div>
