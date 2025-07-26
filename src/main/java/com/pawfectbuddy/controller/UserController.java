@@ -4,13 +4,11 @@ import com.pawfectbuddy.model.entity.Role;
 import com.pawfectbuddy.model.entity.User;
 import com.pawfectbuddy.repository.RoleRepositoryInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
-import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -32,8 +30,8 @@ public class UserController implements Serializable {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private RoleRepositoryInterface roleRepository;
-    private User user;
     private User registrationUser = new User();
+    private User user;
     private List<User> users;
 
     public List<User> getUsers() {
@@ -52,28 +50,14 @@ public class UserController implements Serializable {
             registrationUser.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
             registrationUser.setRoles(roles);
             userService.createUser(registrationUser);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!Your account was created successfully"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Your account was created successfully"));
         }
-    }
-
-    public void save() {
-        if (user.getUserId() == null) {
-            userService.createUser(user);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User saved successfully"));
-        }
-        else {
-            userService.updateUser(user);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User updated successfully"));
-        }
-        newUser();
-        PrimeFaces.current().ajax().update("form:messages");
-    }
-
-    public void newUser() {
-        user = new User();
     }
 
     public void delete() {
-        if (user.getUserId() != null) userService.deleteUser(user);
+        if (user.getUserId() != null) {
+            userService.deleteUser(user);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User deleted successfully"));
+        }
     }
 }
