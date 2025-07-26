@@ -12,6 +12,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +41,7 @@ public class UserController implements Serializable {
         return users;
     }
 
-    public void register() {
+    public void register() throws IOException {
         if (userService.findByUsername(registrationUser.getUsername()) != null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Username Error","This username is already in use"));
         }
@@ -51,6 +53,7 @@ public class UserController implements Serializable {
             registrationUser.setRoles(roles);
             userService.createUser(registrationUser);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Your account was created successfully"));
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/profile.xhtml");
         }
     }
 
