@@ -21,21 +21,24 @@
                 </div>
                 <div>
                     <h:form prependId="false">
-                        <label for="email" class="block text-900 font-medium mb-2">Email</label>
+                        <label for="email" class="block text-900 font-medium mb-3">Email</label>
                         <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true"
                                      validatorMessage="Invalid email format" styleClass="w-full mb-3">
                             <f:validateRegex
                                     pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         </p:inputText>
-
                         <label for="username" class="block text-900 font-medium mb-2">Username</label>
-                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true" styleClass="w-full mb-3"/>
-                        <label for="password-1" class="block text-900 font-medium mb-2">Password</label>
-                        <p:password id="password-1" value="#{userMB.registrationUser.password}" match="password-2" required="true" styleClass="w-full mb-3"/>
-                        <label for="password-2" class="block text-900 font-medium mb-2">Repeat password</label>
-                        <p:password id="password-2" value="#{userMB.registrationUser.password}" required="true" styleClass="w-full mb-3"/>
+                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true"
+                                     validatorMessage="Username is required" styleClass="w-full mb-3"/>
+                        <p:message for="username"/>
+                        <label for="password" class="block text-900 font-medium mb-2">Password</label>
+                        <p:password id="password" value="#{userMB.registrationUser.password}" match="password2"
+                                    validatorMessage="Passwords don't match" required="true" styleClass="w-full mb-3"/>
+                        <label for="password2" class="block text-900 font-medium mb-2">Repeat password</label>
+                        <p:password id="password2" value="#{userMB.registrationUser.password}" required="true"
+                                    validatorMessage="Password is required" styleClass="w-full mb-3"/>
                         <p:commandButton id="signUp" value="Sign up" action="#{userMB.register()}"
-                                         icon="pi pi-check" styleClass="w-full mb-3"/>
+                                         validateClient="true" icon="pi pi-check" styleClass="w-full mb-3"/>
                         <p:messages id="messages" showDetail="true">
                             <p:autoUpdate/>
                         </p:messages>

@@ -4,6 +4,7 @@ import com.pawfectbuddy.model.entity.Role;
 import com.pawfectbuddy.model.entity.User;
 import com.pawfectbuddy.repository.RoleRepositoryInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
+import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -24,6 +25,7 @@ import java.util.Set;
 @ViewScoped //need for ajax
 public class UserController implements Serializable {
 
+    private final long ROLE_USER = 2L;
     @Autowired
     private UserServiceInterface userService;
     @Autowired
@@ -40,13 +42,18 @@ public class UserController implements Serializable {
     }
 
     public void register() {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findById(2L).get()); // 2 - ROLE_USER
-        registrationUser.setActive(true);
-        registrationUser.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
-        registrationUser.setRoles(roles);
-        userService.createUser(registrationUser);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Your account was created successfully"));
+        if (userService.findByUsername(registrationUser.getUsername()) != null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Username Error","This username is already in use"));
+        }
+        else {
+            Set<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findById(ROLE_USER).get());
+            registrationUser.setActive(true);
+            registrationUser.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
+            registrationUser.setRoles(roles);
+            userService.createUser(registrationUser);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!Your account was created successfully"));
+        }
     }
 
     public void save() {
