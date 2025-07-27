@@ -25,7 +25,7 @@
                             <p:autoUpdate/>
                         </p:messages>
                         <label for="email" class="block text-900 font-medium mb-2">Email</label>
-                        <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true"
+                        <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true" placeholder="youremail@company.com"
                                      validatorMessage="Invalid email format" requiredMessage="Email is required"
                                      styleClass="w-full mb-3">
                             <f:validateRegex
@@ -34,7 +34,7 @@
                         </p:inputText>
                         <p:message for="email"/>
                         <label for="username" class="block text-900 font-medium mb-2">Username</label>
-                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true"
+                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true" placeholder="cool_username"
                                      validatorMessage="Required username length is 3-50 characters" requiredMessage="Username is required"
                                      styleClass="w-full mb-3">
                             <f:validateLength minimum="3" maximum="50"/>
@@ -43,22 +43,20 @@
                         <p:message for="username"/>
                         <label for="password" class="block text-900 font-medium mb-2">Password</label>
                         <p:password id="password" value="#{userMB.registrationUser.password}"
-                                    validatorMessage="Required password length is 6-24 characters" requiredMessage="Password is required"
-                                    required="true" styleClass="w-full mb-3">
-                            <f:validateLength minimum="6" maximum="24"/>
+                                    validatorMessage="Passwords don't match" requiredMessage="Password is required"
+                                    required="true" styleClass="w-full mb-3" toggleMask="true" redisplay="true" match="password2">
                             <p:clientValidator event="keyup"/>
                         </p:password>
                         <p:message for="password"/>
                         <label for="password2" class="block text-900 font-medium mb-2">Repeat password</label>
-                        <p:password id="password2" value="#{userMB.registrationUser.password}" required="true"
+                        <p:password id="password2" required="true"
                                     validatorMessage="Passwords don't match" requiredMessage="Password is required"
-                                    styleClass="w-full mb-3" match="password">
-                            <f:validateLength minimum="6" maximum="24"/>
+                                    styleClass="w-full mb-3" toggleMask="true" redisplay="true">
                             <p:clientValidator event="keyup"/>
                         </p:password>
                         <p:message for="password2"/>
                         <p:commandButton id="signUp" value="Sign up" action="#{userMB.register()}"
-                                         validateClient="true" icon="pi pi-check" styleClass="w-full mb-3"/>
+                                         validateClient="true" icon="pi pi-check" styleClass="w-full mb-2"/>
                     </h:form>
                 </div>
             </div>
