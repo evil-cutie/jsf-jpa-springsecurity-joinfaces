@@ -5,6 +5,23 @@
         template="templates/template.xhtml"
 >
     <ui:define name="title">Create Adoption</ui:define>
-    <ui:define name="username">#{loginMB.username}</ui:define>
-    <ui:define name="page">page to create new adoption</ui:define>
+    <ui:define name="content">
+        <div class="flex align-items-center justify-content-center">
+            <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
+                <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5"
+                     style="border-top: 7px solid">
+                    <div class="flex flex-column gap-2">
+                        <div class="flex align-items-center gap-2">
+                            <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
+                                Welcome back, #{loginMB.username}!
+                            </h1>
+                        </div>
+                        <p class="mb-0 mt-0 text-base text-600">
+                            Here you can create a new adoption
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </ui:define>
 </ui:composition>

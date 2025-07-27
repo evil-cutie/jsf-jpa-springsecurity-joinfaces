@@ -1,53 +1,27 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:p="primefaces"
-      xmlns:pe="primefaces.extensions" xmlns:sec="http://www.springframework.org/security/tags"
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="jakarta.faces.facelets"
+        template="/templates/template.xhtml"
 >
-<h:head>
-    <title><ui:insert name="title"/></title>
-    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="mobile-web-app-capable" content="yes"/>
-    <h:outputStylesheet library="assets" name="css/primeflex.css"/>
-    <h:outputStylesheet library="assets" name="css/primeicons.css"/>
-    <h:outputStylesheet library="assets" name="css/layout.css"/>
-</h:head>
-<h:body>
-    <pe:layout fullPage="true">
-        <pe:layoutPane id="layoutPane" position="center">
-            <h:form id="form">
-                <div class="ui-fluid center">
-                    <p:menubar>
-                        <p:menuitem value="Adoption" outcome="/index.xhtml"/>
-                        <p:menuitem value="Profile" outcome="/profile.xhtml"/>
-                        <p:menuitem value="Charity" outcome="/charity.xhtml"/>
-                        <p:menuitem value="Admin" url="/admin/adashboard.xhtml"/>
-                        <p:menuitem value="Quit" url="/logout"/>
-                    </p:menubar>
-                </div>
-            </h:form>
-            <div class="px-4 py-8 md:px-6 lg:px-8">
-                <div class="flex align-items-center justify-content-center">
-                    <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
-                        <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5"
-                             style="border-top: 7px solid">
-                            <div class="flex flex-column gap-2">
-                                <div class="flex align-items-center gap-2">
-                                    <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
-                                        Admin dashboard
-                                    </h1>
-                                </div>
-                                <p class="mb-0 mt-0 text-base text-600">
-                                    Looks like you're an admin!
-                                </p>
-                            </div>
+    <ui:define name="title">Admin</ui:define>
+    <ui:define name="content">
+        <div class="flex align-items-center justify-content-center">
+            <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
+                <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5"
+                     style="border-top: 7px solid">
+                    <div class="flex flex-column gap-2">
+                        <div class="flex align-items-center gap-2">
+                            <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
+                                Admin dashboard
+                            </h1>
                         </div>
-                    </section>
+                        <p class="mb-0 mt-0 text-base text-600">
+                            Looks like you're an admin!
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </pe:layoutPane>
-    </pe:layout>
-</h:body>
-</html>
+            </section>
+        </div>
+    </ui:define>
+</ui:composition>
