@@ -21,7 +21,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Component(value = "userMB") //spring managed bean
+@Component(value = "userMB")
 @ViewScoped //need for ajax
 public class UserController implements Serializable {
 

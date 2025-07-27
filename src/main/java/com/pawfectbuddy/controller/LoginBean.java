@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
-@Component("loginMB") //spring managed bean
+@Component("loginMB")
 @ViewScoped
 public class LoginBean implements Serializable {
 

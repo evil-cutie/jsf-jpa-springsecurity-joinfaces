@@ -1,0 +1,23 @@
+
+
+.ui-password {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+body .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+body .topbar__logo {
+    flex: 0 1 auto;
+    padding: 0 7px;
+}
+body .topbar__menu {
+    flex: 0 1 auto;
+    background: initial;
+    border: initial;
+}
