@@ -52,6 +52,7 @@ public class UserController implements Serializable {
             registrationUser.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
             registrationUser.setRoles(roles);
             userService.createUser(registrationUser);
+            user = registrationUser;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Your account was created successfully"));
             FacesContext.getCurrentInstance().getExternalContext().redirect("/profile.xhtml");
         }

@@ -1,10 +1,9 @@
 package com.pawfectbuddy.model.entity;
-
+// table that represents each listing
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 
 @Data
@@ -27,4 +26,6 @@ public class Listing implements Serializable {
     private String location;
     @Column(name="listing_image")
     private String image;
+    @Column(name="active")
+    private boolean active;
 }
