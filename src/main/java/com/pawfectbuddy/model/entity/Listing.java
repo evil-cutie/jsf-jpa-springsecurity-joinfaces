@@ -28,4 +28,6 @@ public class Listing implements Serializable {
     private String image;
     @Column(name="active")
     private boolean active;
+    @Column
+    private String username;
 }
