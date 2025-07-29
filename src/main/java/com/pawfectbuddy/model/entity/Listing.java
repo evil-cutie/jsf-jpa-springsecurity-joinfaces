@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+
 import java.io.Serializable;
 
 @Data
@@ -30,4 +32,8 @@ public class Listing implements Serializable {
     private boolean active;
     @Column
     private String username;
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

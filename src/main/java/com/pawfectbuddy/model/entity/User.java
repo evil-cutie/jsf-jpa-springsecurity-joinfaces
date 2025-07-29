@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +34,6 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private Set<Role> roles;
-    @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private List<Listing> listings;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Listing> listings = new HashSet<>();
 }

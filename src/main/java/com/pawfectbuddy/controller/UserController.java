@@ -22,7 +22,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Component(value = "userMB")
-@ViewScoped //need for ajax
+@ViewScoped
 public class UserController implements Serializable {
 
     private final long ROLE_USER = 2L;
@@ -33,7 +33,7 @@ public class UserController implements Serializable {
     @Autowired
     private RoleRepositoryInterface roleRepository;
     private User registrationUser = new User();
-    private User user;
+    private User user = new User();
     private List<User> users;
 
     public List<User> getUsers() {

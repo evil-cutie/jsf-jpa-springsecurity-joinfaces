@@ -21,3 +21,8 @@ body .topbar__menu {
     background: initial;
     border: initial;
 }
+body .topbar__text {
+    font-family: "Noteworthy";
+    font-size: 48px;
+    padding-bottom: 10px;
+}

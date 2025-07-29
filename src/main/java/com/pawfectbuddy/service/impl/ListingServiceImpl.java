@@ -5,7 +5,7 @@ import com.pawfectbuddy.repository.ListingRepositoryInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,9 +19,6 @@ public class ListingServiceImpl implements ListingServiceInterface {
 
     @Override
     public Listing findByListingId(Long id) { return listingRepository.findById(id).orElse(null); }
-
-    @Override
-    public List<Listing> findByUserId(Long userId) { return null; }
 
     @Override
     public List<Listing> getListings() { return (List<Listing>) listingRepository.findAll(); }
@@ -51,5 +48,17 @@ public class ListingServiceImpl implements ListingServiceInterface {
     public void updateName(Listing listing, String name) {
         listing.setName(name);
         listingRepository.save(listing);
+    }
+
+    @Override
+    public List<Listing> findByUserId(Long userId) {
+        List<Listing> listingsOfUser = new ArrayList<Listing>();
+        List<Listing> all = getListings();
+        for(Listing listing : all) {
+            if(listing.getUser().getUserId().equals(userId)) {
+                listingsOfUser.add(listing);
+            }
+        }
+        return listingsOfUser;
     }
 }
