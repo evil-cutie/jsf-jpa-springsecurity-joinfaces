@@ -15,4 +15,5 @@ public class LoginBean implements Serializable {
         if (userData instanceof UserDetails) return ((UserDetails) userData).getUsername();
         return userData.toString();
     }
+
 }

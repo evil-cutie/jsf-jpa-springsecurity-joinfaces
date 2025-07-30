@@ -31,6 +31,8 @@ public class Listing implements Serializable {
     @Column(name="active")
     private boolean active;
     @Column
+    private String phone;
+    @Column
     private String username;
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)

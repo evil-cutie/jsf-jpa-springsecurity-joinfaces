@@ -1,12 +1,21 @@
 package com.pawfectbuddy.controller;
+
+import jakarta.faces.view.ViewScoped;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.io.Serializable;
 
-@Controller
-public class HomeController {
+@Getter
+@Setter
+@Controller(value="home")
+@ViewScoped
+public class HomeController implements Serializable {
 
     @GetMapping("/")
     public String home() {
         return "index.xhtml";
     }
+
 }

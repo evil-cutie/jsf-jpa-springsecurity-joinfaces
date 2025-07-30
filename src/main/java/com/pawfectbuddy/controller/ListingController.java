@@ -8,7 +8,6 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ import java.util.Date;
 @Setter
 @Component (value="listingMB")
 @ViewScoped
-public class ListingController {
+public class ListingController implements Serializable {
 
     @Autowired
     private ListingRepositoryInterface listingRepository;
@@ -73,14 +72,15 @@ public class ListingController {
                 while ((length = is.read(buffer)) > 0) {
                     os.write(buffer, 0, length);
                 }
+                successfulUpload();
             } finally {
                 is.close();
                 os.close();
             }
     }
 
-    public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+    public void successfulUpload() {
+        FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
