@@ -52,4 +52,10 @@ public class ListingView implements Serializable {
                 .addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
     }
+
+    public void showPhoneNumber() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact me via: ", listing.getPhone());
+        System.out.println("Pressed on command button");
+        PrimeFaces.current().dialog().showMessageDynamic(message);
+    }
 }

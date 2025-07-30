@@ -2,7 +2,7 @@ package com.pawfectbuddy.controller;
 
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.repository.ListingRepositoryInterface;
-import com.pawfectbuddy.service.impl.UserServiceImpl;
+import com.pawfectbuddy.service.UserServiceInterface;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -26,13 +26,14 @@ public class ListingController implements Serializable {
     @Autowired
     private LoginBean loginBean;
     @Autowired
-    private UserServiceImpl userService;
+    private UserServiceInterface userService;
     private UploadedFile file;
     private Listing newListing = new Listing();
     private String imagePath;
     private final String FILE_PATH = "src/main/resources/META-INF/resources/images/";
 
     public void createListing() {
+        uploadImage();
         newListing.setActive(true);
         newListing.setImage(imagePath);
         newListing.setUser(userService.findByUsername(loginBean.getUsername()));
@@ -41,14 +42,15 @@ public class ListingController implements Serializable {
     }
 
     // upload image for a new listing
-    public void upload() {
+    public void uploadImage() {
         if (file != null) {
             try {
+                System.out.println("Started copying image");
                 imagePath = FILE_PATH + generateUniqueFileName();
                 File newFile = new File(imagePath);
                 copyFile(newFile);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("Cannot upload image" + ex.getMessage());
             }
         }
     }
@@ -67,6 +69,7 @@ public class ListingController implements Serializable {
             try {
                 is = file.getInputStream();
                 os = new FileOutputStream(dest);
+                System.out.println("Opened streams");
                 byte[] buffer = new byte[1024];
                 int length;
                 while ((length = is.read(buffer)) > 0) {
@@ -80,6 +83,7 @@ public class ListingController implements Serializable {
     }
 
     public void successfulUpload() {
+        System.out.println("Successfully uploaded image");
         FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
