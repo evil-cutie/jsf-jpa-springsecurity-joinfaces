@@ -24,8 +24,8 @@
                 </div>
             </section>
         </div>
-        <section>
-            <div class="flex align-items-center justify-content-center">
+        <div class="flex align-items-center justify-content-center">
+            <div class="surface-card p-4 shadow-2 border-round w-full">
                 <div class="product card">
                     <h:form id="form">
                         <p:dataView var="listing" value="#{tableMB.listings}" rows="12" paginator="true"
@@ -52,7 +52,8 @@
                                             <span class="product-category">#{listing.location}</span>
                                         </div>
                                         <div>
-                                            <p:commandButton type="button" value="Adopt" ajax="false" action="#{tableMB.showPhoneNumber}"/>
+                                            <p:commandButton type="button" value="Adopt" ajax="false"
+                                                             action="#{tableMB.showPhoneNumber}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +74,8 @@
                                             <span class="product-category">#{listing.location}</span>
                                         </div>
                                         <div>
-                                            <p:commandButton type="button" value="Adopt" ajax="false" action="#{tableMB.showPhoneNumber}"/>
+                                            <p:commandButton type="button" value="Adopt" ajax="false"
+                                                             action="#{tableMB.showPhoneNumber}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -82,6 +84,6 @@
                     </h:form>
                 </div>
             </div>
-        </section>
+        </div>
     </ui:define>
 </ui:composition>

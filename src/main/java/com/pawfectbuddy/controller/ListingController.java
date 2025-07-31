@@ -30,33 +30,36 @@ public class ListingController implements Serializable {
     private UploadedFile file;
     private Listing newListing = new Listing();
     private String imagePath;
-    private final String FILE_PATH = "src/main/resources/META-INF/resources/images/";
+    private final String NO_IMAGE = "/images/no_image.png";
+    private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
 
     public void createListing() {
-        uploadImage();
         newListing.setActive(true);
-        newListing.setImage(imagePath);
+        newListing.setImage(uploadImage());
         newListing.setUser(userService.findByUsername(loginBean.getUsername()));
         newListing.setUsername(loginBean.getUsername());
         listingRepository.save(newListing);
     }
 
-    // upload image for a new listing
-    public void uploadImage() {
+    // upload image for a new listing and return new image path to store in database
+    // if no file attached return default no avatar image
+    public String uploadImage() {
         if (file != null) {
             try {
-                System.out.println("Started copying image");
-                imagePath = FILE_PATH + generateUniqueFileName();
+                String uniqueName = generateUniqueFileName();
+                String shortImagePath = "/images/" + uniqueName;
+                imagePath = FULL_PATH + uniqueName;
                 File newFile = new File(imagePath);
                 copyFile(newFile);
+                return shortImagePath;
             } catch (IOException ex) {
-                System.out.println("Cannot upload image" + ex.getMessage());
+                System.out.println("ERROR: image upload failed" + ex.getMessage());
             }
         }
+        return NO_IMAGE;
     }
 
-    //each uploaded image should have a unique file path
-    //all images are stored in images directory
+    //each uploaded image should have a unique file path thus file name is generated with timestamp
     private String generateUniqueFileName() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String timestamp = dateFormat.format(new Date());
@@ -69,7 +72,6 @@ public class ListingController implements Serializable {
             try {
                 is = file.getInputStream();
                 os = new FileOutputStream(dest);
-                System.out.println("Opened streams");
                 byte[] buffer = new byte[1024];
                 int length;
                 while ((length = is.read(buffer)) > 0) {
@@ -83,7 +85,6 @@ public class ListingController implements Serializable {
     }
 
     public void successfulUpload() {
-        System.out.println("Successfully uploaded image");
         FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
