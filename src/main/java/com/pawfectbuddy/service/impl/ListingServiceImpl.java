@@ -61,4 +61,16 @@ public class ListingServiceImpl implements ListingServiceInterface {
         }
         return listingsOfUser;
     }
+
+    @Override
+    public List<Listing> getActiveListings() {
+        List<Listing> listings = getListings();
+        List<Listing> active = new ArrayList<>();
+        for(Listing listing : listings) {
+            if(listing.isActive()) {
+                active.add(listing);
+            }
+        }
+        return active;
+    }
 }

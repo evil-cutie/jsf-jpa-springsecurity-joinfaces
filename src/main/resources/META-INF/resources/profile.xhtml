@@ -25,66 +25,69 @@
                 </div>
             </section>
         </div>
-            <div class="flex align-items-center justify-content-center">
-                <div class="surface-card p-4 shadow-2 border-round w-full">
-                    <div class="product card">
-                        <h:form id="form">
-                            <p:dataView var="listing" value="#{tableMB.listingsOfUser}" rows="12" paginator="true"
-                                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                        gridIcon="pi pi-th-large" listIcon="pi pi-bars"
-                                        layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
+        <div class="flex align-items-center justify-content-center">
+            <div class="product">
 
-                                <p:dataViewGridItem>
-                                    <div class="product-grid-item card border-1">
-                                        <div class="product-grid-item-top">
-                                            <div>
-                                                <i class="pi pi-tag product-category-icon"/>
-                                                <span class="product-category">#{listing.type}</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid-item-content">
-                                            <p:graphicImage name="#{listing.image}"/>
-                                            <div class="product-name">#{listing.name}</div>
-                                            <div class="product-description">#{listing.description}</div>
-                                        </div>
-                                        <div class="product-grid-item-bottom">
-                                            <div>
-                                                <i class="pi pi-globe product-location-icon"/>
-                                                <span class="product-category">#{listing.location}</span>
-                                            </div>
-                                            <p:commandButton type="button"
-                                                             value="Mark as Adopted"
-                                                             icon="pi pi-check">
-                                            </p:commandButton>
-                                        </div>
-                                    </div>
-                                </p:dataViewGridItem>
+                <p:dataView var="listing" value="#{tableMB.listingsOfUser}" rows="12" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                            gridIcon="pi pi-th-large" listIcon="pi pi-bars"
+                            layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
 
-                                <p:dataViewListItem>
-                                    <div class="product-list-item">
-                                        <p:graphicImage name="#{listing.image}"/>
-                                        <div class="product-list-detail">
-                                            <div class="product-name">#{listing.name}</div>
-                                            <div class="product-description">#{listing.description}</div>
-                                            <i class="pi pi-tag product-category-icon"/><span
-                                                class="product-category">#{listing.type}</span>
-                                        </div>
-                                        <div class="product-list-action">
-                                            <div>
-                                                <i class="pi pi-globe product-location-icon"/>
-                                                <span class="product-category">#{listing.location}</span>
-                                            </div>
-                                            <p:commandButton type="button"
-                                                             value="Mark as Adopted"
-                                                             icon="pi pi-check">
-                                            </p:commandButton>
-                                        </div>
-                                    </div>
-                                </p:dataViewListItem>
-                            </p:dataView>
-                        </h:form>
-                    </div>
-                </div>
+                    <p:dataViewGridItem>
+                        <div class="product-grid-item card border-1">
+                            <div class="product-grid-item-top">
+                                <div>
+                                    <i class="pi pi-tag product-category-icon"/>
+                                    <span class="product-category">#{listing.type}</span>
+                                </div>
+                            </div>
+                            <div class="product-grid-item-content">
+                                <p:graphicImage name="#{listing.image}"/>
+                                <div class="product-name">#{listing.name}</div>
+                                <div class="product-description">#{listing.description}</div>
+                            </div>
+                            <div class="product-grid-item-bottom">
+                                <div>
+                                    <i class="pi pi-globe product-location-icon"/>
+                                    <span class="product-category">#{listing.location}</span>
+                                </div>
+                                <h:form>
+                                    <p:commandButton id="buttonGrid"
+                                                     value="Mark as Adopted"
+                                                     icon="pi pi-check"
+                                                     onclick="(function (e) { e.textContent = 'Adopted!'})(this)"
+                                                     action="#{tableMB.markAsAdopted(listing)}"/>
+                                </h:form>
+                            </div>
+                        </div>
+                    </p:dataViewGridItem>
+
+                    <p:dataViewListItem>
+                        <div class="product-list-item">
+                            <p:graphicImage name="#{listing.image}"/>
+                            <div class="product-list-detail">
+                                <div class="product-name">#{listing.name}</div>
+                                <div class="product-description">#{listing.description}</div>
+                                <i class="pi pi-tag product-category-icon"/><span
+                                    class="product-category">#{listing.type}</span>
+                            </div>
+                            <div class="product-list-action">
+                                <div>
+                                    <i class="pi pi-globe product-location-icon"/>
+                                    <span class="product-category">#{listing.location}</span>
+                                </div>
+                                <h:form>
+                                    <p:commandButton id="buttonList"
+                                                     value="Mark as Adopted"
+                                                     icon="pi pi-check"
+                                                     onclick="(function (e) { e.textContent = 'Adopted!'})(this)"
+                                                     action="#{tableMB.markAsAdopted(listing)}"/>
+                                </h:form>
+                            </div>
+                        </div>
+                    </p:dataViewListItem>
+                </p:dataView>
             </div>
+        </div>
     </ui:define>
 </ui:composition>

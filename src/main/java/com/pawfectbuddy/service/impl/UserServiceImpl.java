@@ -1,13 +1,11 @@
 package com.pawfectbuddy.service.impl;
 
-import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.model.entity.User;
 import com.pawfectbuddy.repository.UserRepositoryInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserServiceInterface {

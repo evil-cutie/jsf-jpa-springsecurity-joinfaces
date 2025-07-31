@@ -31,21 +31,7 @@ body .topbar__text {
     margin: 0;
 }
 
-body .layout-content {
-    margin-left: 250px;
-    padding-top: 70px;
-}
-
-.layout-content .content-section {
-    padding: 2rem;
-}
-
-.layout-content .content-section.implementation {
-    background-color: white;
-    color: var(--text-color);
-}
-
-.layout-content .card {
+.card {
     background: white;
     padding: 2rem;
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
@@ -59,7 +45,12 @@ body .layout-content {
 }
 
 .product .product-description {
-    margin: 0 0 1rem 0
+    margin: 0 0 1rem 0;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    min-height: 51px;
 }
 
 .product .product-category-icon {

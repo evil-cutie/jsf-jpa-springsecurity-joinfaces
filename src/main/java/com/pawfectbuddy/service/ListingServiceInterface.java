@@ -1,8 +1,6 @@
 package com.pawfectbuddy.service;
 
 import com.pawfectbuddy.model.entity.Listing;
-import com.pawfectbuddy.model.entity.User;
-
 import java.util.List;
 
 public interface ListingServiceInterface {
@@ -14,6 +12,8 @@ public interface ListingServiceInterface {
 
     List<Listing> getListings();
 
+    List<Listing> getActiveListings();
+
     void delete(Listing listing);
 
     void updateDescription(Listing listing, String description);
@@ -23,4 +23,5 @@ public interface ListingServiceInterface {
     void updateLocation(Listing listing, String location);
 
     void updateName(Listing listing, String name);
+
 }

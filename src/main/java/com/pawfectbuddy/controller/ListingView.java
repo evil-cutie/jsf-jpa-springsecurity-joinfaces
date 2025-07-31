@@ -3,6 +3,7 @@ package com.pawfectbuddy.controller;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -26,12 +27,13 @@ public class ListingView implements Serializable {
     private LoginBean loginBean;
     @Autowired
     private UserServiceInterface userService;
+    private boolean active;
     private List<Listing> listings;
     private List<Listing> listingsOfUser;
     private Listing listing;
 
     public List<Listing> getListings() {
-        listings = listingService.getListings();
+        listings = listingService.getActiveListings();
         return listings;
     }
 
@@ -55,7 +57,12 @@ public class ListingView implements Serializable {
 
     public void showPhoneNumber() {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact me via: ", listing.getPhone());
-        System.out.println("Pressed on command button");
         PrimeFaces.current().dialog().showMessageDynamic(message);
     }
+
+    // marking active = false to indicate that this listing is no longer available
+    public void markAsAdopted(Listing listing) {
+        listingService.updateStatus(listing, false);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.pawfectbuddy.controller;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.repository.ListingRepositoryInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -33,12 +34,14 @@ public class ListingController implements Serializable {
     private final String NO_IMAGE = "/images/no_image.png";
     private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
 
-    public void createListing() {
+    public void createListing() throws IOException {
         newListing.setActive(true);
         newListing.setImage(uploadImage());
         newListing.setUser(userService.findByUsername(loginBean.getUsername()));
         newListing.setUsername(loginBean.getUsername());
         listingRepository.save(newListing);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Listing was created!"));
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/profile.xhtml");
     }
 
     // upload image for a new listing and return new image path to store in database
