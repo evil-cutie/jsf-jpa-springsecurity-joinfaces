@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -36,7 +35,6 @@ public class ListingController implements Serializable {
     private String imagePath;
     private final String NO_IMAGE = "/images/no_image.png";
     private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
-    private List<String> animals;
 
     public void createListing() throws IOException {
         newListing.setActive(true);
@@ -94,11 +92,6 @@ public class ListingController implements Serializable {
     public void successfulUpload() {
         FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
-    public List<String> getAnimals() {
-        animals = animalService.getAnimalNames();
-        return animals;
     }
 
 }

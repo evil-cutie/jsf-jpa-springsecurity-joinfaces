@@ -1,7 +1,9 @@
 package com.pawfectbuddy.controller;
 
+import com.pawfectbuddy.model.entity.City;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.service.AnimalServiceInterface;
+import com.pawfectbuddy.service.CityServiceInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
 import jakarta.faces.application.FacesMessage;
@@ -13,6 +15,7 @@ import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -29,12 +32,17 @@ public class ListingView implements Serializable {
     private UserServiceInterface userService;
     @Autowired
     private AnimalServiceInterface animalService;
+    @Autowired
+    private CityServiceInterface cityService;
     private boolean active;
     private List<Listing> listings;
     private List<Listing> activeListings;
     private List<Listing> inactiveListings;
     private Listing listing;
     private List<String> animals;
+    private List<String> cities;
+    private List<String> selectedAnimals = new ArrayList<>();
+    private List<String> selectedCities =  new ArrayList<>();
 
     public List<Listing> getListings() {
         listings = listingService.getActiveListings();
@@ -50,6 +58,11 @@ public class ListingView implements Serializable {
     public List<String> getAnimals() {
         animals = animalService.getAnimalNames();
         return animals;
+    }
+
+    public List<String> getCities() {
+        cities = cityService.getCityNames();
+        return cities;
     }
 
     public List<Listing> getInactiveListingsOfUser() {

@@ -22,7 +22,7 @@
                                       dynamic="true"
                                       filter="true" filterMatchMode="startsWith"
                                       label="Animal kind" updateLabel="true" showSelectAll="false"
-                                      selectedLabel="Animals Selected"
+                                      selectedLabel="Animal kind"
                                       style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
                                       value="#{tableMB.animals}">
                     <f:selectItems value="#{tableMB.animals}"/>
@@ -30,6 +30,21 @@
                     <f:facet name="footer">
                         <p:divider styleClass="mt-0" />
                         <h:outputText value="#{tableMB.animals.size()} animals"
+                                      styleClass="py-1 block font-bold"/>
+                    </f:facet>
+                </p:selectCheckboxMenu>
+                <p:selectCheckboxMenu id="city"
+                                      dynamic="true"
+                                      filter="true" filterMatchMode="startsWith"
+                                      label="City" updateLabel="true" showSelectAll="false"
+                                      selectedLabel="City"
+                                      style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
+                                      value="#{tableMB.cities}">
+                    <f:selectItems value="#{tableMB.cities}"/>
+
+                    <f:facet name="footer">
+                        <p:divider styleClass="mt-0" />
+                        <h:outputText value="#{tableMB.cities.size()} cities"
                                       styleClass="py-1 block font-bold"/>
                     </f:facet>
                 </p:selectCheckboxMenu>

@@ -24,6 +24,19 @@ INSERT INTO animals (animal_type) VALUES ('parrot');
 INSERT INTO animals (animal_type) VALUES ('fish');
 INSERT INTO animals (animal_type) VALUES ('hamster');
 INSERT INTO animals (animal_type) VALUES ('guinea pig');
+--cities
+INSERT INTO cities (city_name) VALUES ('Tel Aviv');
+INSERT INTO cities (city_name) VALUES ('Jerusalem');
+INSERT INTO cities (city_name) VALUES ('Haifa');
+INSERT INTO cities (city_name) VALUES ('Ashdod');
+INSERT INTO cities (city_name) VALUES ('Rishon LeZion');
+INSERT INTO cities (city_name) VALUES ('Beersheba');
+INSERT INTO cities (city_name) VALUES ('Petah Tikva');
+INSERT INTO cities (city_name) VALUES ('Netanya');
+INSERT INTO cities (city_name) VALUES ('Bat Yam');
+INSERT INTO cities (city_name) VALUES ('Ramat Gan');
+INSERT INTO cities (city_name) VALUES ('Herzliya');
+INSERT INTO cities (city_name) VALUES ('Rehovot');
 --mapping of routes and roles
 INSERT INTO route_role (route_id, role_id) VALUES (1, 1);
 INSERT INTO route_role (route_id, role_id) VALUES (2, 1);
