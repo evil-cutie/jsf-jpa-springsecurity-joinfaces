@@ -6,21 +6,49 @@
 >
     <ui:define name="title">Charity</ui:define>
     <ui:define name="content">
-        <div class="flex align-items-center justify-content-center">
-            <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
-                <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5">
-                    <div class="flex flex-column gap-2">
-                        <div class="flex align-items-center gap-2">
-                            <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
-                                Welcome back, #{loginMB.username}!
-                            </h1>
-                        </div>
-                        <p class="mb-0 mt-0 text-base text-600">
-                            This is a charity page
-                        </p>
-                    </div>
-                </div>
-            </section>
+        <div class="flex align-items-center justify-content-center flex-column mx-6">
+            <h:graphicImage name="/images/street_cats.png" styleClass="w-full"/>
+            <div class="flex flex-column mt-3">
+                <h2 class="font-bold 650 text-4xl line-height-3">
+                    Different Ways You Can Help End Pet Homelessness
+                </h2>
+                <p class="line-height-3 text-xl">
+                    Millions of pets end up in shelters every year across the world. Being a pet-friendly community starts with working to end pet homelessness. Through our special program, we work to help cities tackle pet homelessness and increase adoption.
+                </p>
+                <p class="font-bold 650 line-height-3 text-xl">Here are seven ways you can help in your community.</p>
+                <h2 class="font-bold 650 text-3xl line-height-3">
+                    1. Know the causes of pet homelessness.
+                </h2>
+                <p class="line-height-3 text-xl">
+                    Most pets who are homeless got there through no fault of their own. From financial strain, to owner illness to housing issues, life changes for owners affect many pets. Initiatives that help address these causes, like pet-friendly housing and support for pet owners facing financial challenges, can help.
+                </p>
+                <h2 class="font-bold 650 text-3xl line-height-3">
+                    2. Spay and neuter pets.
+                </h2>
+                <p class="line-height-3 text-xl">
+                    Spaying and neutering pets can help reduce unplanned litters that could end up homeless. It’s not right for every pet, so you’ll want to talk with your veterinarian. But for many pets it’s a helpful step that can even offer health benefits. You can see more about the potential benefits of spay/neuter from your local pet clinic.
+                </p>
+                <h2 class="font-bold 650 text-3xl line-height-3">
+                    3. Adopt.
+                </h2>
+                <p class="line-height-3 text-xl">
+                    If you’re looking to add a pet to your family, consider adopting from a shelter or rescue. Not only do you give a pet a second chance, you can find a pet that’s a great match to your family. Chose the age, personality and activity level you want since there are so many homeless pets to choose from. You can also adopt a pet through our platform
+                    <a href="${pageContext.request.contextPath}/index.xhtml">here.</a>
+                </p>
+                <h2 class="font-bold 650 text-3xl line-height-3">
+                    4. Be a volunteer.
+                </h2>
+                <p class="line-height-3 text-xl">
+                    Shelters and rescues need help to support the many homeless pets they assist every year. As a volunteer, you can help pets get exercise, be socialized and even spread the word to encourage their adoption. You can even make volunteering a family project.
+                </p>
+                <h2 class="font-bold 650 text-3xl line-height-3">
+                    5. Donate to help homeless pets.
+                </h2>
+                <p class="line-height-3 text-xl">
+                    Organizations across the world work tirelessly to help, but with millions of pets becoming homeless each year, they need your support. Donate to your local shelter or to organizations that offer grants to many shelters and rescues that help pets get adopted. You can contact our admins at
+                    <a href="mailto:admin@pawfectbuddy.com">admin@pawfectbuddy.com</a> to get more information about verified charities that work with our platform.
+                </p>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

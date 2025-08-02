@@ -8,12 +8,15 @@
     <ui:define name="title">Profile</ui:define>
     <ui:define name="content">
         <div class="flex align-items-center justify-content-between mb-2">
-            <div class="flex flex-shrink-1">
-                <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
-                    Welcome back, #{loginMB.username}! Here are your inactive listings
+            <div class="flex flex-shrink-1 flex-column">
+                <h1 class="m-0 font-semibold 650 text-3xl line-height-3">
+                    Profile
+                </h1>
+                <h1 class="m-0 text-500 text-xl line-height-3">
+                    Welcome back, #{loginMB.username}! Here is a history of your adoptions
                 </h1>
             </div>
-            <div class="flex flex-shrink-1">
+            <div class="flex flex-shrink-1 align-self-end">
                 <p:linkButton id="createAdoption" value="Create adoption" outcome="/adoption.xhtml"
                               icon="pi pi-pencil" styleClass="mr-1"/>
                 <p:linkButton id="activeListings" value="My Adoptions" outcome="/profile.xhtml"

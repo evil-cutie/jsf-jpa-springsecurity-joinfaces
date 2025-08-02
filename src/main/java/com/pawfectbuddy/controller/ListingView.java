@@ -1,9 +1,9 @@
 package com.pawfectbuddy.controller;
 
 import com.pawfectbuddy.model.entity.Listing;
+import com.pawfectbuddy.service.AnimalServiceInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -27,11 +27,14 @@ public class ListingView implements Serializable {
     private LoginBean loginBean;
     @Autowired
     private UserServiceInterface userService;
+    @Autowired
+    private AnimalServiceInterface animalService;
     private boolean active;
     private List<Listing> listings;
     private List<Listing> activeListings;
     private List<Listing> inactiveListings;
     private Listing listing;
+    private List<String> animals;
 
     public List<Listing> getListings() {
         listings = listingService.getActiveListings();
@@ -42,6 +45,11 @@ public class ListingView implements Serializable {
         Long userId = userService.findByUsername(loginBean.getUsername()).getUserId();
         activeListings = listingService.getActiveListingsByUserId(userId);
         return activeListings;
+    }
+
+    public List<String> getAnimals() {
+        animals = animalService.getAnimalNames();
+        return animals;
     }
 
     public List<Listing> getInactiveListingsOfUser() {
@@ -62,14 +70,20 @@ public class ListingView implements Serializable {
                         new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
     }
 
-    public void showPhoneNumber() {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact me via: ", listing.getPhone());
+    public void showPhoneNumber(Listing listing) {
+        FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO,"Hi! Glad you're interested in this adoption :) ",
+                                            "Contact me for more details: " + listing.getPhone());
         PrimeFaces.current().dialog().showMessageDynamic(message);
     }
 
     // marking active = false to indicate that this listing is no longer available
     public void markAsAdopted(Listing listing) {
         listingService.updateStatus(listing, false);
+    }
+
+    public void deleteListing(Listing listing) {
+        listingService.delete(listing);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmed", "Listing deleted"));
     }
 
 }

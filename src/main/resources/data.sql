@@ -17,6 +17,13 @@ INSERT INTO routes (route_url) VALUES ('/history.xhtml');
 INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (role_name) VALUES ('ROLE_USER');
 INSERT INTO roles (role_name) VALUES ('ROLE_GUEST');
+--animals
+INSERT INTO animals (animal_type) VALUES ('cat');
+INSERT INTO animals (animal_type) VALUES ('dog');
+INSERT INTO animals (animal_type) VALUES ('parrot');
+INSERT INTO animals (animal_type) VALUES ('fish');
+INSERT INTO animals (animal_type) VALUES ('hamster');
+INSERT INTO animals (animal_type) VALUES ('guinea pig');
 --mapping of routes and roles
 INSERT INTO route_role (route_id, role_id) VALUES (1, 1);
 INSERT INTO route_role (route_id, role_id) VALUES (2, 1);

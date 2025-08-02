@@ -2,26 +2,118 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:p="primefaces"
         template="/templates/template.xhtml"
 >
     <ui:define name="title">Admin</ui:define>
     <ui:define name="content">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="flex flex-shrink-1 flex-column">
+                <h1 class="m-0 font-semibold 650 text-3xl line-height-3">
+                    Admin dashboard
+                </h1>
+                <h1 class="m-0 text-500 text-xl line-height-3">
+                    Hey Admin! You can manage all users listings here
+                </h1>
+            </div>
+            <div class="flex flex-shrink-1 align-self-end">
+                <p:selectCheckboxMenu id="animal"
+                                      dynamic="true"
+                                      filter="true" filterMatchMode="startsWith"
+                                      label="Animal kind" updateLabel="true" showSelectAll="false"
+                                      selectedLabel="Animals Selected"
+                                      style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
+                                      value="#{tableMB.animals}">
+                    <f:selectItems value="#{tableMB.animals}"/>
+
+                    <f:facet name="footer">
+                        <p:divider styleClass="mt-0"/>
+                        <h:outputText value="#{tableMB.animals.size()} animals"
+                                      styleClass="py-1 block font-bold"/>
+                    </f:facet>
+                </p:selectCheckboxMenu>
+            </div>
+        </div>
         <div class="flex align-items-center justify-content-center">
-            <section class="surface-section px-4 py-5 md:px-6 lg:px-8 w-full">
-                <div class="flex flex-column lg:flex-row gap-3 justify-content-between lg:align-items-center border-primary py-5"
-                     style="border-top: 7px solid">
-                    <div class="flex flex-column gap-2">
-                        <div class="flex align-items-center gap-2">
-                            <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
-                                Admin dashboard
-                            </h1>
-                        </div>
-                        <p class="mb-0 mt-0 text-base text-600">
-                            Looks like you're an admin!
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <div class="product">
+                <h:form id="form">
+
+                    <p:dataView var="listing" value="#{tableMB.listings}" rows="12" paginator="true"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                gridIcon="pi pi-th-large" listIcon="pi pi-bars"
+                                layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
+                        <p:growl id="message" showDetail="true"/>
+                        <p:dataViewGridItem>
+                            <div class="product-grid-item card border-1">
+                                <div class="product-grid-item-top">
+                                    <div>
+                                        <i class="pi pi-tag product-category-icon"/>
+                                        <span class="product-category">#{listing.type}</span>
+                                    </div>
+                                </div>
+                                <div class="product-grid-item-content">
+                                    <p:graphicImage name="#{listing.image}"/>
+                                    <div class="product-name">#{listing.name}</div>
+                                    <div class="product-description">#{listing.description}</div>
+                                </div>
+                                <div class="product-grid-item-bottom">
+                                    <div>
+                                        <i class="pi pi-globe product-location-icon"/>
+                                        <span class="product-category">#{listing.location}</span>
+                                    </div>
+                                    <div>
+                                        <p:commandButton type="button" onclick="PF('cd').show()" value="Delete"
+                                                         icon="pi pi-trash"
+                                                         styleClass="ui-button-danger mr-2"/>
+                                        <p:confirmDialog message="Are you sure about permanently deleting this listing?"
+                                                         header="Delete listing"
+                                                         severity="alert" widgetVar="cd">
+                                            <p:commandButton value="Yes Sure" action="#{tableMB.deleteListing(listing)}"
+                                                             update="message"
+                                                             oncomplete="PF('cd').hide()"
+                                                             styleClass="ui-button-danger"/>
+                                            <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button"/>
+                                        </p:confirmDialog>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:dataViewGridItem>
+
+                        <p:dataViewListItem>
+                            <div class="product-list-item">
+                                <p:graphicImage name="#{listing.image}"/>
+                                <div class="product-list-detail">
+                                    <div class="product-name">#{listing.name}</div>
+                                    <div class="product-description">#{listing.description}</div>
+                                    <i class="pi pi-tag product-category-icon"/><span
+                                        class="product-category">#{listing.type}</span>
+                                </div>
+                                <div class="product-list-action">
+                                    <div>
+                                        <i class="pi pi-globe product-location-icon"/>
+                                        <span class="product-category">#{listing.location}</span>
+                                    </div>
+                                    <div>
+                                        <p:commandButton type="button" onclick="PF('cd').show()" value="Delete"
+                                                         icon="pi pi-trash"
+                                                         styleClass="ui-button-danger mr-2"/>
+                                        <p:confirmDialog message="Are you sure about permanently deleting this listing?"
+                                                         header="Delete listing"
+                                                         severity="alert" widgetVar="cd">
+                                            <p:commandButton value="Yes Sure" action="#{tableMB.deleteListing(listing)}"
+                                                             update="message"
+                                                             oncomplete="PF('cd').hide()"
+                                                             styleClass="ui-button-danger"/>
+                                            <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button"/>
+                                        </p:confirmDialog>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:dataViewListItem>
+                    </p:dataView>
+                </h:form>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

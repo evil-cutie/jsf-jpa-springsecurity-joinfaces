@@ -2,8 +2,8 @@ package com.pawfectbuddy.controller;
 
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.repository.ListingRepositoryInterface;
+import com.pawfectbuddy.service.AnimalServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +26,8 @@ public class ListingController implements Serializable {
     @Autowired
     private ListingRepositoryInterface listingRepository;
     @Autowired
+    private AnimalServiceInterface animalService;
+    @Autowired
     private LoginBean loginBean;
     @Autowired
     private UserServiceInterface userService;
@@ -33,6 +36,7 @@ public class ListingController implements Serializable {
     private String imagePath;
     private final String NO_IMAGE = "/images/no_image.png";
     private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
+    private List<String> animals;
 
     public void createListing() throws IOException {
         newListing.setActive(true);
@@ -90,6 +94,11 @@ public class ListingController implements Serializable {
     public void successfulUpload() {
         FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public List<String> getAnimals() {
+        animals = animalService.getAnimalNames();
+        return animals;
     }
 
 }
