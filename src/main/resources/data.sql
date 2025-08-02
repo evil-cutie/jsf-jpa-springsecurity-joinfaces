@@ -12,6 +12,7 @@ INSERT INTO routes (route_url) VALUES ('/registration.xhtml');
 INSERT INTO routes (route_url) VALUES ('/admin/adashboard.xhtml');
 INSERT INTO routes (route_url) VALUES ('/adoption.xhtml');
 INSERT INTO routes (route_url) VALUES ('/images/favicon.ico');
+INSERT INTO routes (route_url) VALUES ('/history.xhtml');
 --roles
 INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (role_name) VALUES ('ROLE_USER');
@@ -43,6 +44,8 @@ INSERT INTO route_role (route_id, role_id) VALUES (7, 3);
 INSERT INTO route_role (route_id, role_id) VALUES (9, 3);
 INSERT INTO route_role (route_id, role_id) VALUES (9, 1);
 INSERT INTO route_role (route_id, role_id) VALUES (9, 2);
+INSERT INTO route_role (route_id, role_id) VALUES (10, 1);
+INSERT INTO route_role (route_id, role_id) VALUES (10, 2);
 --mapping of users and roles
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_role (user_id, role_id) VALUES (2, 2);

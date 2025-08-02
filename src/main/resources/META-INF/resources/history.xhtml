@@ -10,19 +10,19 @@
         <div class="flex align-items-center justify-content-between mb-2">
             <div class="flex flex-shrink-1">
                 <h1 class="m-0 font-semibold text-900 text-xl line-height-3">
-                    Welcome back, #{loginMB.username}! Here you can manage your active adoptions
+                    Welcome back, #{loginMB.username}! Here are your inactive listings
                 </h1>
             </div>
             <div class="flex flex-shrink-1">
                 <p:linkButton id="createAdoption" value="Create adoption" outcome="/adoption.xhtml"
                               icon="pi pi-pencil" styleClass="mr-1"/>
-                <p:linkButton id="activeListings" value="History of Adoptions" outcome="/history.xhtml"
-                              icon="pi pi-book" />
+                <p:linkButton id="activeListings" value="My Adoptions" outcome="/profile.xhtml"
+                              icon="pi pi-send" />
             </div>
         </div>
         <div class="flex align-items-center justify-content-center">
             <div class="product">
-                <p:dataView var="listing" value="#{tableMB.activeListingsOfUser}" rows="12" paginator="true"
+                <p:dataView var="listing" value="#{tableMB.inactiveListingsOfUser}" rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                             gridIcon="pi pi-th-large" listIcon="pi pi-bars"
                             layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
@@ -47,10 +47,10 @@
                                 </div>
                                 <h:form>
                                     <p:commandButton id="buttonGrid"
-                                                     value="Mark as Adopted"
-                                                     icon="pi pi-check"
-                                                     onclick="(function (e) { e.textContent = 'Adopted!'})(this)"
-                                                     action="#{tableMB.markAsAdopted(listing)}"/>
+                                                     type="button"
+                                                     disabled="true"
+                                                     value="Adopted"
+                                                     icon="pi pi-check"/>
                                 </h:form>
                             </div>
                         </div>
@@ -70,13 +70,11 @@
                                     <i class="pi pi-globe product-location-icon"/>
                                     <span class="product-category">#{listing.location}</span>
                                 </div>
-                                <h:form>
-                                    <p:commandButton id="buttonList"
-                                                     value="Mark as Adopted"
-                                                     icon="pi pi-check"
-                                                     onclick="(function (e) { e.textContent = 'Adopted!'})(this)"
-                                                     action="#{tableMB.markAsAdopted(listing)}"/>
-                                </h:form>
+                                <p:commandButton id="buttonList"
+                                                 type="button"
+                                                 disabled="true"
+                                                 value="Adopted"
+                                                 icon="pi pi-check"/>
                             </div>
                         </div>
                     </p:dataViewListItem>

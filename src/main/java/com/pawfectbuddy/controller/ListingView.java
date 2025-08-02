@@ -29,7 +29,8 @@ public class ListingView implements Serializable {
     private UserServiceInterface userService;
     private boolean active;
     private List<Listing> listings;
-    private List<Listing> listingsOfUser;
+    private List<Listing> activeListings;
+    private List<Listing> inactiveListings;
     private Listing listing;
 
     public List<Listing> getListings() {
@@ -37,10 +38,16 @@ public class ListingView implements Serializable {
         return listings;
     }
 
-    public List<Listing> getListingsOfUser() {
+    public List<Listing> getActiveListingsOfUser() {
         Long userId = userService.findByUsername(loginBean.getUsername()).getUserId();
-        listingsOfUser = listingService.findByUserId(userId);
-        return listingsOfUser;
+        activeListings = listingService.getActiveListingsByUserId(userId);
+        return activeListings;
+    }
+
+    public List<Listing> getInactiveListingsOfUser() {
+        Long userId = userService.findByUsername(loginBean.getUsername()).getUserId();
+        inactiveListings = listingService.getInactiveListingsByUserId(userId);
+        return inactiveListings;
     }
 
     public void clearMultiViewState() {

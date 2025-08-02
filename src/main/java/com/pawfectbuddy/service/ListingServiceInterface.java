@@ -14,6 +14,10 @@ public interface ListingServiceInterface {
 
     List<Listing> getActiveListings();
 
+    List<Listing> getActiveListingsByUserId(Long userId);
+
+    List<Listing> getInactiveListingsByUserId(Long listingId);
+
     void delete(Listing listing);
 
     void updateDescription(Listing listing, String description);

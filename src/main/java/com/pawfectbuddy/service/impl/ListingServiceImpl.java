@@ -73,4 +73,28 @@ public class ListingServiceImpl implements ListingServiceInterface {
         }
         return active;
     }
+
+    @Override
+    public List<Listing> getActiveListingsByUserId(Long userId) {
+        List<Listing> activeListingsOfUser = new ArrayList<>();
+        List<Listing> active = getActiveListings();
+        for(Listing listing : active) {
+            if(listing.getUser().getUserId().equals(userId)) {
+                activeListingsOfUser.add(listing);
+            }
+        }
+        return activeListingsOfUser;
+    }
+
+    @Override
+    public List<Listing> getInactiveListingsByUserId(Long userId) {
+        List<Listing> userListings = findByUserId(userId);
+        List<Listing> inactive = new ArrayList<>();
+        for(Listing listing : userListings) {
+            if(!listing.isActive()) {
+                inactive.add(listing);
+            }
+        }
+        return inactive;
+    }
 }
