@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +22,8 @@ public class City implements Serializable {
     private Long id;
     @Column(name="city_name")
     private String name;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Listing> listings = new HashSet<>();
 
 }
 

@@ -26,17 +26,20 @@
                             <p:autoUpdate/>
                         </p:messages>
                         <label for="email" class="block text-900 font-medium mb-2">Email</label>
-                        <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true" placeholder="youremail@company.com"
+                        <p:inputText id="email" value="#{userMB.registrationUser.email}" required="true"
+                                     placeholder="youremail@company.com"
                                      validatorMessage="Invalid email format" requiredMessage="Email is required"
                                      styleClass="w-full mb-3">
                             <f:validateRegex
-                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                             <p:clientValidator event="keyup"/>
                         </p:inputText>
                         <p:message for="email"/>
                         <label for="username" class="block text-900 font-medium mb-2">Username</label>
-                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true" placeholder="cool_username"
-                                     validatorMessage="Required username length is 3-50 characters" requiredMessage="Username is required"
+                        <p:inputText id="username" value="#{userMB.registrationUser.username}" required="true"
+                                     placeholder="cool_username"
+                                     validatorMessage="Required username length is 3-50 characters"
+                                     requiredMessage="Username is required"
                                      styleClass="w-full mb-3">
                             <f:validateLength minimum="3" maximum="50"/>
                             <p:clientValidator event="keyup"/>
@@ -45,7 +48,8 @@
                         <label for="password" class="block text-900 font-medium mb-2">Password</label>
                         <p:password id="password" value="#{userMB.registrationUser.password}"
                                     validatorMessage="Passwords don't match" requiredMessage="Password is required"
-                                    required="true" styleClass="w-full" toggleMask="true" redisplay="true" match="password2">
+                                    required="true" styleClass="w-full" toggleMask="true" redisplay="true"
+                                    match="password2">
                             <p:clientValidator event="keyup"/>
                         </p:password>
                         <p:message for="password"/>

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +21,7 @@ public class Animal implements Serializable {
     private Long id;
     @Column(name="animal_type")
     private String type;
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Listing> listings = new HashSet<>();
 
 }

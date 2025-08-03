@@ -28,7 +28,7 @@
                     <f:selectItems value="#{tableMB.animals}"/>
 
                     <f:facet name="footer">
-                        <p:divider styleClass="mt-0" />
+                        <p:divider styleClass="mt-0"/>
                         <h:outputText value="#{tableMB.animals.size()} animals"
                                       styleClass="py-1 block font-bold"/>
                     </f:facet>
@@ -43,7 +43,7 @@
                     <f:selectItems value="#{tableMB.cities}"/>
 
                     <f:facet name="footer">
-                        <p:divider styleClass="mt-0" />
+                        <p:divider styleClass="mt-0"/>
                         <h:outputText value="#{tableMB.cities.size()} cities"
                                       styleClass="py-1 block font-bold"/>
                     </f:facet>
@@ -72,10 +72,8 @@
                                     <div class="product-description">#{listing.description}</div>
                                 </div>
                                 <div class="product-grid-item-bottom">
-                                    <div>
-                                        <i class="pi pi-globe product-location-icon"/>
-                                        <span class="product-category">#{listing.location}</span>
-                                    </div>
+                                    <i class="pi pi-home product-location-icon"/>
+                                    <span class="product-category">#{listing.location}</span>
                                     <div>
                                         <p:commandButton value="Adopt" ajax="false"
                                                          action="#{tableMB.showPhoneNumber(listing)}"/>
@@ -95,7 +93,7 @@
                                 </div>
                                 <div class="product-list-action">
                                     <div>
-                                        <i class="pi pi-globe product-location-icon"/>
+                                        <i class="pi pi-home product-location-icon"/>
                                         <span class="product-category">#{listing.location}</span>
                                     </div>
                                     <div>

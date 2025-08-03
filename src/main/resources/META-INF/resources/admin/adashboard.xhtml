@@ -13,27 +13,29 @@
                 <h1 class="m-0 font-semibold 650 text-3xl line-height-3">
                     Admin dashboard
                 </h1>
-                <h1 class="m-0 text-500 text-xl line-height-3">
+                <h1 class="m-0 text-575 text-xl line-height-3">
                     Hey Admin! You can manage all users listings here
                 </h1>
             </div>
-            <div class="flex flex-shrink-1 align-self-end">
-                <p:selectCheckboxMenu id="animal"
-                                      dynamic="true"
-                                      filter="true" filterMatchMode="startsWith"
-                                      label="Animal kind" updateLabel="true" showSelectAll="false"
-                                      selectedLabel="Animals Selected"
-                                      style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
-                                      value="#{tableMB.animals}">
-                    <f:selectItems value="#{tableMB.animals}"/>
+            <h:form>
+                <div class="flex flex-shrink-1 align-self-end">
+                    <p:selectCheckboxMenu id="animal"
+                                          dynamic="true"
+                                          filter="true" filterMatchMode="startsWith"
+                                          label="Animal kind" updateLabel="true" showSelectAll="false"
+                                          selectedLabel="Animals Selected"
+                                          style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
+                                          value="#{tableMB.animals}">
+                        <f:selectItems value="#{tableMB.animals}"/>
 
-                    <f:facet name="footer">
-                        <p:divider styleClass="mt-0"/>
-                        <h:outputText value="#{tableMB.animals.size()} animals"
-                                      styleClass="py-1 block font-bold"/>
-                    </f:facet>
-                </p:selectCheckboxMenu>
-            </div>
+                        <f:facet name="footer">
+                            <p:divider styleClass="mt-0"/>
+                            <h:outputText value="#{tableMB.animals.size()} animals"
+                                          styleClass="py-1 block font-bold"/>
+                        </f:facet>
+                    </p:selectCheckboxMenu>
+                </div>
+            </h:form>
         </div>
         <div class="flex align-items-center justify-content-center">
             <div class="product">
@@ -43,8 +45,8 @@
                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                 gridIcon="pi pi-th-large" listIcon="pi pi-bars"
                                 layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
-                        <p:growl id="message" showDetail="true"/>
                         <p:dataViewGridItem>
+                            <p:growl id="message" showDetail="true"/>
                             <div class="product-grid-item card border-1">
                                 <div class="product-grid-item-top">
                                     <div>
@@ -63,24 +65,26 @@
                                         <span class="product-category">#{listing.location}</span>
                                     </div>
                                     <div>
-                                        <p:commandButton type="button" onclick="PF('cd').show()" value="Delete"
-                                                         icon="pi pi-trash"
-                                                         styleClass="ui-button-danger mr-2"/>
-                                        <p:confirmDialog message="Are you sure about permanently deleting this listing?"
-                                                         header="Delete listing"
-                                                         severity="alert" widgetVar="cd">
-                                            <p:commandButton value="Yes Sure" action="#{tableMB.deleteListing(listing)}"
-                                                             update="message"
-                                                             oncomplete="PF('cd').hide()"
-                                                             styleClass="ui-button-danger"/>
-                                            <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button"/>
-                                        </p:confirmDialog>
+                                        <p:commandButton value="Delete" action="#{tableMB.deleteListing(listing)}"
+                                                         update="message"
+                                                         styleClass="ui-button-danger mr-2" icon="pi pi-times">
+                                            <p:confirm header="Confirmation"
+                                                       message="Are you sure about permanently deleting this listing?"
+                                                       icon="pi pi-info-circle"
+                                                       yesButtonLabel="Yes"
+                                                       yesButtonClass="bg-red-600 text-white"
+                                                       yesButtonIcon="pi pi-trash"
+                                                       noButtonLabel="No"
+                                                       noButtonClass="bg-green-600 text-white"
+                                                       noButtonIcon="pi pi-heart"/>
+                                        </p:commandButton>
                                     </div>
                                 </div>
                             </div>
                         </p:dataViewGridItem>
 
                         <p:dataViewListItem>
+                            <p:growl id="messageList" showDetail="true"/>
                             <div class="product-list-item">
                                 <p:graphicImage name="#{listing.image}"/>
                                 <div class="product-list-detail">
@@ -95,25 +99,33 @@
                                         <span class="product-category">#{listing.location}</span>
                                     </div>
                                     <div>
-                                        <p:commandButton type="button" onclick="PF('cd').show()" value="Delete"
-                                                         icon="pi pi-trash"
-                                                         styleClass="ui-button-danger mr-2"/>
-                                        <p:confirmDialog message="Are you sure about permanently deleting this listing?"
-                                                         header="Delete listing"
-                                                         severity="alert" widgetVar="cd">
-                                            <p:commandButton value="Yes Sure" action="#{tableMB.deleteListing(listing)}"
-                                                             update="message"
-                                                             oncomplete="PF('cd').hide()"
-                                                             styleClass="ui-button-danger"/>
-                                            <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button"/>
-                                        </p:confirmDialog>
+                                        <p:commandButton value="Delete" action="#{tableMB.deleteListing(listing)}"
+                                                         update="messageList"
+                                                         styleClass="ui-button-danger mr-2" icon="pi pi-times">
+                                            <p:confirm header="Confirmation"
+                                                       message="Are you sure about permanently deleting this listing?"
+                                                       icon="pi pi-info-circle"
+                                                       yesButtonLabel="Yes"
+                                                       yesButtonClass="bg-red-600 text-white"
+                                                       yesButtonIcon="pi pi-trash"
+                                                       noButtonLabel="No"
+                                                       noButtonClass="bg-green-600 text-white"
+                                                       noButtonIcon="pi pi-heart"/>
+                                        </p:commandButton>
                                     </div>
                                 </div>
                             </div>
                         </p:dataViewListItem>
                     </p:dataView>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"
+                                         icon="pi pi-times"/>
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"
+                                         icon="pi pi-check"/>
+                    </p:confirmDialog>
                 </h:form>
             </div>
         </div>
     </ui:define>
+
 </ui:composition>
