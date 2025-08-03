@@ -24,4 +24,13 @@ public class AnimalServiceImpl implements AnimalServiceInterface {
         }
         return animals;
     }
+
+    @Override
+    public Animal findByName(String name) {
+        List<Animal> all = (List<Animal>) animalRepository.findAll();
+        for (Animal animal : all) {
+            if (animal.getType().equals(name)) return animal;
+        }
+        return null;
+    }
 }

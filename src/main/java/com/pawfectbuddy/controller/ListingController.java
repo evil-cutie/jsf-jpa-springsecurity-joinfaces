@@ -3,6 +3,7 @@ package com.pawfectbuddy.controller;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.repository.ListingRepositoryInterface;
 import com.pawfectbuddy.service.AnimalServiceInterface;
+import com.pawfectbuddy.service.CityServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -27,20 +28,25 @@ public class ListingController implements Serializable {
     @Autowired
     private AnimalServiceInterface animalService;
     @Autowired
+    private CityServiceInterface cityService;
+    @Autowired
     private LoginBean loginBean;
     @Autowired
     private UserServiceInterface userService;
     private UploadedFile file;
     private Listing newListing = new Listing();
     private String imagePath;
+    private String city;
+    private String animal;
     private final String NO_IMAGE = "/images/no_image.png";
     private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
 
     public void createListing() throws IOException {
+        newListing.setCity(cityService.findByName(city));
+        newListing.setAnimal(animalService.findByName(animal));
         newListing.setActive(true);
         newListing.setImage(uploadImage());
         newListing.setUser(userService.findByUsername(loginBean.getUsername()));
-        newListing.setUsername(loginBean.getUsername());
         listingRepository.save(newListing);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Congrats!","Listing was created!"));
         FacesContext.getCurrentInstance().getExternalContext().redirect("/profile.xhtml");

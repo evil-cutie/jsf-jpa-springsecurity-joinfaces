@@ -1,5 +1,7 @@
 package com.pawfectbuddy.service;
 
+import com.pawfectbuddy.model.entity.Animal;
+import com.pawfectbuddy.model.entity.City;
 import com.pawfectbuddy.model.entity.Listing;
 import java.util.List;
 
@@ -24,8 +26,10 @@ public interface ListingServiceInterface {
 
     void updateStatus(Listing listing, boolean adopted);
 
-    void updateLocation(Listing listing, String location);
+    void updateLocation(Listing listing, City location);
 
-    void updateName(Listing listing, String name);
+    void updateTitle(Listing listing, String title);
+
+    void updateAnimalType(Listing listing, Animal animal);
 
 }

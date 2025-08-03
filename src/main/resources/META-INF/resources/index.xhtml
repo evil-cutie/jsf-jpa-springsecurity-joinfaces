@@ -63,17 +63,17 @@
                                 <div class="product-grid-item-top">
                                     <div>
                                         <i class="pi pi-tag product-category-icon"/>
-                                        <span class="product-category">#{listing.type}</span>
+                                        <span class="product-category">#{listing.animal.type}</span>
                                     </div>
                                 </div>
                                 <div class="product-grid-item-content">
                                     <p:graphicImage name="#{listing.image}"/>
-                                    <div class="product-name">#{listing.name}</div>
+                                    <div class="product-name">#{listing.title}</div>
                                     <div class="product-description">#{listing.description}</div>
                                 </div>
                                 <div class="product-grid-item-bottom">
                                     <i class="pi pi-home product-location-icon"/>
-                                    <span class="product-category">#{listing.location}</span>
+                                    <span class="product-category">#{listing.city.name}</span>
                                     <div>
                                         <p:commandButton value="Adopt" ajax="false"
                                                          action="#{tableMB.showPhoneNumber(listing)}"/>

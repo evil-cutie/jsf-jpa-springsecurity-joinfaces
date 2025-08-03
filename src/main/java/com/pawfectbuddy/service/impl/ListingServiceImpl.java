@@ -1,5 +1,7 @@
 package com.pawfectbuddy.service.impl;
 
+import com.pawfectbuddy.model.entity.Animal;
+import com.pawfectbuddy.model.entity.City;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.repository.ListingRepositoryInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
@@ -39,14 +41,20 @@ public class ListingServiceImpl implements ListingServiceInterface {
     }
 
     @Override
-    public void updateLocation(Listing listing, String location) {
-        listing.setLocation(location);
+    public void updateLocation(Listing listing, City location) {
+        listing.setCity(location);
         listingRepository.save(listing);
     }
 
     @Override
-    public void updateName(Listing listing, String name) {
-        listing.setName(name);
+    public void updateAnimalType(Listing listing, Animal animal) {
+        listing.setAnimal(animal);
+        listingRepository.save(listing);
+    }
+
+    @Override
+    public void updateTitle(Listing listing, String title) {
+        listing.setTitle(title);
         listingRepository.save(listing);
     }
 

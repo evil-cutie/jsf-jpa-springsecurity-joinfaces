@@ -23,4 +23,13 @@ public class CityServiceImpl implements CityServiceInterface {
         }
         return cityNames;
     }
+
+    @Override
+    public City findByName(String name) {
+        List<City> cities = (List<City>) cityRepository.findAll();
+        for (City city : cities) {
+            if (city.getName().equals(name)) return city;
+        }
+        return null;
+    }
 }

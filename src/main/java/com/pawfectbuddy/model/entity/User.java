@@ -1,12 +1,11 @@
 package com.pawfectbuddy.model.entity;
-// table that represent each user
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name="users")
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
@@ -36,4 +36,5 @@ public class User implements Serializable {
     private Set<Role> roles;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Listing> listings = new HashSet<>();
+
 }
