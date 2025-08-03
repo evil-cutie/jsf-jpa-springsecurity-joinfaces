@@ -8,4 +8,5 @@ public interface CityServiceInterface {
 
     List<String> getCityNames();
     City findByName(String name);
+    City findById(Long id);
 }

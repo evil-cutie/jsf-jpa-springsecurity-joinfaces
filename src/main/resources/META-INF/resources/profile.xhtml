@@ -12,7 +12,7 @@
                 <h1 class="m-0 font-semibold 650 text-3xl line-height-3">
                     Profile
                 </h1>
-                <h1 class="m-0 text-500 text-xl line-height-3">
+                <h1 class="m-0 text-575 text-xl line-height-3">
                     Welcome back, #{loginMB.username}! Here you can manage your active adoptions
                 </h1>
             </div>
@@ -27,7 +27,7 @@
             <div class="product">
                 <p:dataView var="listing" value="#{tableMB.activeListingsOfUser}" rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                            gridIcon="pi pi-th-large" listIcon="pi pi-bars"
+                            gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginatorPosition="bottom"
                             layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true">
 
                     <p:dataViewGridItem>
@@ -44,8 +44,8 @@
                                 <div class="product-description">#{listing.description}</div>
                             </div>
                             <div class="product-grid-item-bottom">
-                                <div>
-                                    <i class="pi pi-globe product-location-icon"/>
+                                <div class="flex align-items-center">
+                                    <i class="pi pi-home product-location-icon mr-1"/>
                                     <span class="product-category">#{listing.city.name}</span>
                                 </div>
                                 <h:form>

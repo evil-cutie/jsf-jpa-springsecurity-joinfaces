@@ -34,10 +34,10 @@ public class ListingController implements Serializable {
     @Autowired
     private UserServiceInterface userService;
     private UploadedFile file;
-    private Listing newListing = new Listing();
     private String imagePath;
     private String city;
     private String animal;
+    private Listing newListing = new Listing();
     private final String NO_IMAGE = "/images/no_image.png";
     private final String FULL_PATH = "src/main/resources/META-INF/resources/images/";
 

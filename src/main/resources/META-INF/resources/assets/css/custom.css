@@ -2,10 +2,6 @@ body .ui-dataview .ui-dataview-header {
     border-width: 1px 1px 1px 1px;
 }
 
-.product-grid-item .product-grid-item-bottom {
-    flex: 0 1 auto;
-}
-
 .ui-password {
     margin-bottom: 1rem;
     width: 100%;
@@ -49,6 +45,10 @@ body .topbar__text {
 
 .product .product-name {
     font-size: 1rem;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     font-weight: 700
 }
 
@@ -58,7 +58,7 @@ body .topbar__text {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    min-height: 51px;
+    min-height: 57px;
 }
 
 .product .product-category-icon {

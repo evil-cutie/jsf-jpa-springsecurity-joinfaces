@@ -8,4 +8,5 @@ public interface AnimalServiceInterface {
 
     List<String> getAnimalNames();
     Animal findByName(String name);
+    Animal findById(Long id);
 }

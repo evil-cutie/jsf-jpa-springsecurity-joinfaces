@@ -1,21 +1,25 @@
 package com.pawfectbuddy.controller;
 
-import com.pawfectbuddy.model.entity.City;
 import com.pawfectbuddy.model.entity.Listing;
 import com.pawfectbuddy.service.AnimalServiceInterface;
 import com.pawfectbuddy.service.CityServiceInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleSelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -41,11 +45,15 @@ public class ListingView implements Serializable {
     private Listing listing;
     private List<String> animals;
     private List<String> cities;
-    private List<String> selectedAnimals = new ArrayList<>();
-    private List<String> selectedCities =  new ArrayList<>();
+    private List<String> selectedAnimals;
+    private List<String> selectedCities;
 
     public List<Listing> getListings() {
         listings = listingService.getActiveListings();
+        if (selectedAnimals != null) {
+            filterByAnimal(selectedAnimals);
+            System.out.println("filtered by animals");
+        }
         return listings;
     }
 
@@ -97,6 +105,51 @@ public class ListingView implements Serializable {
     public void deleteListing(Listing listing) {
         listingService.delete(listing);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmed", "Listing deleted"));
+    }
+
+    public void filterListings() {
+        System.out.println(selectedAnimals);
+        System.out.println(selectedCities);
+    }
+
+    public void filterByAnimal(List<String> animals) {
+        List<Listing> filtered = new ArrayList<Listing>();
+        for (String animal : animals) {
+            for (Listing listing : listings) {
+                if (animal.equals(listing.getAnimal().getType())) filtered.add(listing);
+            }
+        }
+        listings = filtered;
+    }
+
+    public void filterByCity(List<String> cities) {
+        List<Listing> filtered = new ArrayList<Listing>();
+        for (String city : cities) {
+            for (Listing listing : listings) {
+                if (city.equals(listing.getCity().getName())) filtered.add(listing);
+            }
+        }
+        listings = filtered;
+    }
+
+    public void onToggleSelect(ToggleSelectEvent event) {
+        FacesMessage msg = new FacesMessage();
+        msg.setSummary("Toggled: " + event.isSelected());
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onItemSelect(SelectEvent event) {
+        String animal = event.getObject().toString();
+//        if(!selectedAnimals.contains(animal))
+        selectedAnimals.add(animal);
+        System.out.println(selectedAnimals);
+    }
+
+    public void onItemUnselect(UnselectEvent event) {
+        selectedAnimals.remove(event.getObject().toString());
+        System.out.println(selectedAnimals);
     }
 
 }

@@ -32,4 +32,9 @@ public class CityServiceImpl implements CityServiceInterface {
         }
         return null;
     }
+
+    @Override
+    public City findById(Long id) {
+        return cityRepository.findById(id).orElse(null);
+    }
 }

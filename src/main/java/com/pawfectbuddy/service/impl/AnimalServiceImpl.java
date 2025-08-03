@@ -33,4 +33,9 @@ public class AnimalServiceImpl implements AnimalServiceInterface {
         }
         return null;
     }
+
+    @Override
+    public Animal findById(Long id) {
+        return animalRepository.findById(id).orElse(null);
+    }
 }
