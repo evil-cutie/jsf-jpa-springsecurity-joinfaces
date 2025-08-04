@@ -25,7 +25,6 @@ import java.util.Set;
 @ViewScoped
 public class UserController implements Serializable {
 
-    private final long ROLE_USER = 2L;
     @Autowired
     private UserServiceInterface userService;
     @Autowired
@@ -35,6 +34,7 @@ public class UserController implements Serializable {
     private User registrationUser = new User();
     private User user = new User();
     private List<User> users;
+    private final long ROLE_USER = 2L;
 
     public List<User> getUsers() {
         users = userService.findAll();

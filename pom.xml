@@ -66,12 +66,12 @@
 			<groupId>org.joinfaces</groupId>
 			<artifactId>security-spring-boot-starter</artifactId>
 		</dependency>
-		<!--pulls primefaces ui component library-->
+		<!--primefaces ui component library-->
 		<dependency>
 			<groupId>org.joinfaces</groupId>
 			<artifactId>primefaces-spring-boot-starter</artifactId>
 		</dependency>
-		<!--pulls omnifaces utility library-->
+		<!--omnifaces utility library-->
 		<dependency>
 			<groupId>org.joinfaces</groupId>
 			<artifactId>omnifaces-spring-boot-starter</artifactId>
@@ -81,6 +81,11 @@
 			<groupId>org.webjars.npm</groupId>
 			<artifactId>primeflex</artifactId>
 			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.19.2</version>
 		</dependency>
 	</dependencies>
 

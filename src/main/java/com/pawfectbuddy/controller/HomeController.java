@@ -11,8 +11,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@RestController (value="home")
-@ViewScoped
+@Controller (value="home")
 public class HomeController implements Serializable {
 
     @GetMapping("/")

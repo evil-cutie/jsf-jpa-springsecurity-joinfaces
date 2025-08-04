@@ -5,21 +5,18 @@ import com.pawfectbuddy.service.AnimalServiceInterface;
 import com.pawfectbuddy.service.CityServiceInterface;
 import com.pawfectbuddy.service.ListingServiceInterface;
 import com.pawfectbuddy.service.UserServiceInterface;
-import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.ToggleSelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -50,10 +47,7 @@ public class ListingView implements Serializable {
 
     public List<Listing> getListings() {
         listings = listingService.getActiveListings();
-        if (!selectedAnimals.isEmpty()) {
-            filterByAnimal(selectedAnimals);
-            System.out.println("selectedAnimals: " + selectedAnimals.toString());
-        }
+        if (!selectedAnimals.isEmpty()) filterByAnimal(selectedAnimals);
         return listings;
     }
 
@@ -139,7 +133,6 @@ public class ListingView implements Serializable {
 
     public void onItemUnselect(UnselectEvent event) {
         selectedAnimals.remove(event.getObject().toString());
-        System.out.println(selectedAnimals);
     }
 
 }
