@@ -45,14 +45,14 @@ public class ListingView implements Serializable {
     private Listing listing;
     private List<String> animals;
     private List<String> cities;
-    private List<String> selectedAnimals;
+    private List<String> selectedAnimals = new ArrayList<>();
     private List<String> selectedCities;
 
     public List<Listing> getListings() {
         listings = listingService.getActiveListings();
-        if (selectedAnimals != null) {
+        if (!selectedAnimals.isEmpty()) {
             filterByAnimal(selectedAnimals);
-            System.out.println("filtered by animals");
+            System.out.println("selectedAnimals: " + selectedAnimals.toString());
         }
         return listings;
     }
@@ -132,19 +132,9 @@ public class ListingView implements Serializable {
         listings = filtered;
     }
 
-    public void onToggleSelect(ToggleSelectEvent event) {
-        FacesMessage msg = new FacesMessage();
-        msg.setSummary("Toggled: " + event.isSelected());
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
     public void onItemSelect(SelectEvent event) {
         String animal = event.getObject().toString();
-//        if(!selectedAnimals.contains(animal))
-        selectedAnimals.add(animal);
-        System.out.println(selectedAnimals);
+        if(!selectedAnimals.contains(animal)) selectedAnimals.add(animal);
     }
 
     public void onItemUnselect(UnselectEvent event) {

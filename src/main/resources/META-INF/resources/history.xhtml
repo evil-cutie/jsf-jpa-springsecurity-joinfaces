@@ -20,11 +20,11 @@
                 <p:linkButton id="createAdoption" value="Create adoption" outcome="/adoption.xhtml"
                               icon="pi pi-pencil" styleClass="mr-1"/>
                 <p:linkButton id="activeListings" value="My Adoptions" outcome="/profile.xhtml"
-                              icon="pi pi-send" />
+                              icon="pi pi-send"/>
             </div>
         </div>
         <div class="flex align-items-center justify-content-center">
-            <div class="product">
+            <div class="product w-full">
                 <p:dataView var="listing" value="#{tableMB.inactiveListingsOfUser}" rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                             gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginatorPosition="bottom"
@@ -67,17 +67,17 @@
                                 <div class="product-description">#{listing.description}</div>
                                 <i class="pi pi-tag product-category-icon"/><span
                                     class="product-category">#{listing.animal.type}</span>
+                                <i class="pi pi-home product-location-icon"/>
+                                <span class="product-category">#{listing.city.name}</span>
                             </div>
                             <div class="product-list-action">
-                                <div>
-                                    <i class="pi pi-globe product-location-icon"/>
-                                    <span class="product-category">#{listing.city.name}</span>
+                                <div class="flex justify-content-end">
+                                    <p:commandButton id="buttonList"
+                                                     type="button"
+                                                     disabled="true"
+                                                     value="Adopted"
+                                                     icon="pi pi-check"/>
                                 </div>
-                                <p:commandButton id="buttonList"
-                                                 type="button"
-                                                 disabled="true"
-                                                 value="Adopted"
-                                                 icon="pi pi-check"/>
                             </div>
                         </div>
                     </p:dataViewListItem>
