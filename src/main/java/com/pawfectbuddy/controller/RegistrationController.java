@@ -2,6 +2,7 @@ package com.pawfectbuddy.controller;
 
 import com.pawfectbuddy.controller.dto.RegistrationRequest;
 import com.pawfectbuddy.service.UserServiceInterface;
+import jakarta.faces.context.FacesContext;
 import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
