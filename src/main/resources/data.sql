@@ -1,6 +1,7 @@
 --users
 INSERT INTO users (password, username, user_email, active) VALUES('$2a$12$Oots1YAVyUk.etOo9WKaH.n97qrr0thU6fLs2/AdiMwLpyafefGnm', 'panda', 'panda@gmail.com', true);
 INSERT INTO users (password, username, user_email, active) VALUES ('$2a$12$Oots1YAVyUk.etOo9WKaH.n97qrr0thU6fLs2/AdiMwLpyafefGnm', 'not_admin', 'notadmin@gmail.com', true);
+INSERT INTO users (password, username, user_email, active) VALUES('$2a$12$Oots1YAVyUk.etOo9WKaH.n97qrr0thU6fLs2/AdiMwLpyafefGnm', 'catlover', 'hunter2@gmail.com', true);
 --routes
 INSERT INTO routes (route_url) VALUES ('/index.xhtml');
 INSERT INTO routes (route_url) VALUES ('/403.xhtml');
@@ -14,6 +15,7 @@ INSERT INTO routes (route_url) VALUES ('/adoption.xhtml');
 INSERT INTO routes (route_url) VALUES ('/images/favicon.ico');
 INSERT INTO routes (route_url) VALUES ('/history.xhtml');
 INSERT INTO routes (route_url) VALUES ('/api/users/register');
+INSERT INTO routes (route_url) VALUES ('/redirect.xhtml');
 --roles
 INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (role_name) VALUES ('ROLE_USER');
@@ -63,11 +65,12 @@ INSERT INTO route_role (route_id, role_id) VALUES (4, 3);
 INSERT INTO route_role (route_id, role_id) VALUES (5, 3);
 INSERT INTO route_role (route_id, role_id) VALUES (7, 3);
 INSERT INTO route_role (route_id, role_id) VALUES (9, 3);
-INSERT INTO route_role (route_id, role_id) VALUES (9, 1);
-INSERT INTO route_role (route_id, role_id) VALUES (9, 2);
 INSERT INTO route_role (route_id, role_id) VALUES (10, 1);
 INSERT INTO route_role (route_id, role_id) VALUES (10, 2);
 INSERT INTO route_role (route_id, role_id) VALUES (11, 3);
+INSERT INTO route_role (route_id, role_id) VALUES (12, 3);
+INSERT INTO route_role (route_id, role_id) VALUES (12, 2);
+INSERT INTO route_role (route_id, role_id) VALUES (12, 1);
 --mapping of users and roles
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
@@ -83,3 +86,9 @@ INSERT INTO listings (description, listing_image, listing_title, active, city_id
 INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('My moms cat is looking for a new home. He likes tuna a lot!', '/images/cat4.png', 'Cat', true, 2, 1, 1,'+972555555');
 INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('Looking for a new home for my friends parrot', '/images/parrot1.png', 'Parrot for adoption', true, 1, 3, 1,'+123123123');
 INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('This dog needs new family! He is very friendly and likes to play', '/images/dog4.png', 'Friendly dog', true, 8, 2, 2,'+1234567890');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('New home needed for Chubbs! His owner cannot take care of him', '/images/dog7.png', 'New friend for you', true, 7, 2, 2,'+97255000000');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('They are really cute, can adopt separately', '/images/dog8.png', 'Two pups for adoption', true, 10, 2, 2,'+97211111');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('Urgent! Need to rehome a dog due to sudden allergy', '/images/dog5.png', 'Urgent adoption! Help!', true, 9, 2, 1,'+97255000000');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('She likes to go on hikes and play fetch. Message me for more info (please no calls)', '/images/dog6.png', 'Help me to find a new family for Bella!', true, 1, 2, 1,'+97255000000');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('A couple of parrots for adoption. They are very sweet and know how to talk, you wont get bored with em!', '/images/parrot2.png', 'Parrots', true, 2, 3, 3,'+97255000000');
+INSERT INTO listings (description, listing_image, listing_title, active, city_id, animal_id, user_id, phone) VALUES ('Please help, my roommate got herself a cat so i have to rehome my parrots', '/images/parrot3.png', 'Urgent adoption', true, 2, 3, 3,'+97255000000');

@@ -20,13 +20,17 @@
             <div class="flex align-items-center justify-content-center">
                 <div class="surface-card p-4 shadow-2 border-round w-full lg:w-3 md:w-7">
                     <h:form enctype="multipart/form-data">
+                        <p:messages id="message">
+                            <p:autoUpdate/>
+                        </p:messages>
                         <label for="listingTitle" class="block text-900 font-medium mb-2">Title</label>
                         <p:inputText id="listingTitle" value="#{listingMB.newListing.title}"
-                                     styleClass="w-full mb-3"/>
+                                     styleClass="w-full mb-3" required="true" requiredMessage="Title is required"/>
                         <label for="phone"
                                class="block text-900 font-medium mb-2">How can we contact you?</label>
                         <p:inputText id="phone" value="#{listingMB.newListing.phone}"
-                                     styleClass="w-full mb-3"/>
+                                     styleClass="w-full mb-3" required="true"
+                                     requiredMessage="Phone number is required"/>
                         <label for="animalType"
                                class="block text-900 font-medium mb-2">What kind of animal is this?</label>
                         <p:selectOneMenu id="animalType" value="#{listingMB.animal}" label="Animal type"
@@ -40,10 +44,8 @@
                         </p:selectOneMenu>
                         <label for="description" class="block text-900 font-medium mb-2">Description</label>
                         <p:inputTextarea id="description" value="#{listingMB.newListing.description}"
-                                         rows="6" cols="33" styleClass="w-full mb-3" maxlength="100"/>
-                        <p:message for="description">
-                            <p:autoUpdate/>
-                        </p:message>
+                                         rows="6" cols="33" styleClass="w-full mb-3" maxlength="100" required="true"
+                                         requiredMessage="Description is required"/>
                         <p:fileUpload id="upload" label="Attach photo" value="#{listingMB.file}" mode="simple"
                                       skinSimple="true" styleClass="w-full mb-3"/>
                         <p:commandButton id="submit" value="Submit" ajax="false"

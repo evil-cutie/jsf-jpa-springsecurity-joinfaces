@@ -3,13 +3,13 @@ package com.pawfectbuddy.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pawfectbuddy.controller.dto.RegistrationRequest;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -21,8 +21,10 @@ import java.net.http.HttpResponse;
 @NoArgsConstructor
 @Component(value="serviceCaller")
 @RequestScoped
-public class LocalServiceCaller {
+public class LocalServiceCaller implements Serializable {
+
     RegistrationRequest registrationRequest = new RegistrationRequest();
+
     // call API service to register a new user and redirect him to profile if successful
     public void callLocalAPI() {
         ObjectMapper mapper = new ObjectMapper();
@@ -34,10 +36,12 @@ public class LocalServiceCaller {
                     .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if(response.statusCode() == 200) FacesContext.getCurrentInstance()
-                    .addMessage(null, new FacesMessage("Your account was created successfully!"));
+            if(response.statusCode() == 200) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/redirect.xhtml");
+            }
         } catch (Exception e) {
             System.out.println("Error while sending http request to API endpoint: " + e.getMessage());
         }
     }
+
 }

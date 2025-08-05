@@ -2,6 +2,10 @@ body .ui-dataview .ui-dataview-header {
     border-width: 1px 1px 1px 1px;
 }
 
+.redirect {
+    background: #fbfbfb;
+}
+
 .ui-password {
     margin-bottom: 1rem;
     width: 100%;

@@ -62,8 +62,7 @@
                         <p:message for="password2"/>
                         <p:commandButton id="signUp" value="Sign up" action="#{serviceCaller.callLocalAPI()}"
                                          validateClient="true" icon="pi pi-check" styleClass="w-full mb-2"
-                                         update="message" onclick="function redirectToPage() {window.location.href = '/login.xhtml';}
-                                                                   setTimeout(redirectToPage, 5000);"/>
+                                         update="message"/>
                     </h:form>
                 </div>
             </div>
