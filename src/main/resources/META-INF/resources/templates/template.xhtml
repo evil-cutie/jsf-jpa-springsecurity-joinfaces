@@ -2,18 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="jakarta.faces.facelets"
-      xmlns:f="jakarta.faces.core"
       xmlns:p="primefaces"
       xmlns:pe="primefaces.extensions"
-      xmlns:sec="https://joinfaces.org/security"
->
+      xmlns:sec="https://joinfaces.org/security">
 <h:head>
     <title><ui:insert name="title"/></title>
     <link rel="shortcut icon" href="#{request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="mobile-web-app-capable" content="yes"/>
-    <h:outputStylesheet library="assets" name="css/primeflex.css"/>
+    <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>
     <h:outputStylesheet library="assets" name="css/primeicons.css"/>
     <h:outputStylesheet library="assets" name="css/reset.css"/>
     <h:outputStylesheet library="assets" name="css/custom.css"/>
