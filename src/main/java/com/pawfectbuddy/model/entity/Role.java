@@ -6,6 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
+/**
+ * This entity maps to the {@code roles} table in the database.
+ * The primary key is identified by the {@code roleId} field.
+ * <p>Persistent fields include:
+ * <ul>
+ *     <li>{@code roleName}: A role name </li>
+ * </ul>
+ * @author Xenia Levit
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

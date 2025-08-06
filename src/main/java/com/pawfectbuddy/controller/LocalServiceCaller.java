@@ -15,6 +15,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Calls local API service upon a registration request from client
+ * @author Xenia Levit
+ */
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,7 +30,7 @@ public class LocalServiceCaller implements Serializable {
 
     RegistrationRequest registrationRequest = new RegistrationRequest();
 
-    // call API service to register a new user and redirect him to profile if successful
+    // POST a new user and redirect him to profile if successful
     public void callLocalAPI() {
         ObjectMapper mapper = new ObjectMapper();
         try (HttpClient client = HttpClient.newHttpClient()) {

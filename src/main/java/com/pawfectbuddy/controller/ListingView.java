@@ -19,6 +19,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Table View bean which has filter methods for the data which table represents.
+ * It has access to User, Listing, Animal, City Services for fetching listings according to user request
+ * @author Xenia Levit
+ */
+
 @Getter
 @Setter
 @Component(value="tableMB")

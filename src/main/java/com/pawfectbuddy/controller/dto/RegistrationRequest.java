@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for API calls to register a new user
+ * @author Xenia Levit
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

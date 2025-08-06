@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Manages user credentials. Upon new authentication request, it accesses UserRepository and looks for data which matches given username
+ * @author Xenia Levit
+ */
+
 @Service
 public class UserCredentialsSecurity implements UserDetailsService {
 

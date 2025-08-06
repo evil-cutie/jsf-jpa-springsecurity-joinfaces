@@ -8,6 +8,21 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This entity maps to the {@code users} table in the database.
+ * The primary key is identified by the {@code userId} field.
+ * <p>Persistent fields include:
+ * <ul>
+ *     <li>{@code username}: A username </li>
+ *     <li>{@code password}: A password </li>
+ *     <li>{@code email}: A user's email </li>
+ *     <li>{@code active}: Whether a user is active or not </li>
+ * </ul>
+ * Has {@code ManyToMany} relationship with entity {@code Role}
+ * Has {@code OneToMany} relationship with entity {@code Listing}
+ * @author Xenia Levit
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

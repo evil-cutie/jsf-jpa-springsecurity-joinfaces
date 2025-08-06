@@ -16,6 +16,11 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * A listing creation bean which has methods for image upload and access to ListingRepository to create a new listing in the database
+ * @author Xenia Levit
+ */
+
 @Getter
 @Setter
 @Component (value="listingMB")

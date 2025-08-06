@@ -7,6 +7,17 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * This entity maps to the {@code routes} table in the database.
+ * The primary key is identified by the {@code routeId} field.
+ * <p>Persistent fields include:
+ * <ul>
+ *     <li>{@code roleUrl}: A route URL </li>
+ * </ul>
+ * Has {@code ManyToMany} relationship with entity {@code Role}
+ * @author Xenia Levit
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

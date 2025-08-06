@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CityService has access to CityRepository for performing various CRUD methods upon a request from client
+ * @author Xenia Levit
+ */
+
 @Service
 public class CityServiceImpl implements CityServiceInterface {
 

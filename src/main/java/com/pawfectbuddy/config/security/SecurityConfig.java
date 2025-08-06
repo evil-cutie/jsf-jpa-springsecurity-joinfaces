@@ -16,6 +16,12 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class configures the SecurityFilterChain which allows or denies access to users based on their role.
+ * It also configures login/logout pages and anonymous authentication.
+ * @author Xenia Levit
+ */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -38,6 +44,11 @@ public class SecurityConfig {
         return builder.build();
     }
 
+    /**
+     * Manages http requests in context of Spring Security
+     * @param http incoming http request
+     * @return new SecurityFilterChain
+     */
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) {
         try {

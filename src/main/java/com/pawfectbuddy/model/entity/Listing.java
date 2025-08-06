@@ -7,6 +7,23 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import java.io.Serializable;
 
+/**
+ * This entity maps to the {@code listings} table in the database.
+ * The primary key is identified by the {@code listingId} field.
+ * <p>Persistent fields include:
+ * <ul>
+ *     <li>{@code title}: A listing title </li>
+ *     <li>{@code description}: A listing description </li>
+ *     <li>{@code image}: A listing image </li>
+ *     <li>{@code phone}: A listing phone </li>
+ *     <li>{@code active}: Whether a listing is active or not </li>
+ * </ul>
+ * Has {@code ManyToOne} relationship with entity {@code User}
+ * Has {@code ManyToOne} relationship with entity {@code City}
+ * Has {@code ManyToOne} relationship with entity {@code Animal}
+ * @author Xenia Levit
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

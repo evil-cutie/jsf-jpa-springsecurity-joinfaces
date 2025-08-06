@@ -6,6 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
+/**
+ * A Login bean which stores user details after successful login
+ * @author Xenia Levit
+ */
+
 @Component("loginMB")
 @ViewScoped
 public class LoginBean implements Serializable {

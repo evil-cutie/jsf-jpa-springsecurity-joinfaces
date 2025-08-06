@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ListingService has access to ListingRepository for performing various CRUD methods upon a request from client
+ * @author Xenia Levit
+ */
+
 @Service
 public class ListingServiceImpl implements ListingServiceInterface {
 

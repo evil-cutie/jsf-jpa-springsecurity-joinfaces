@@ -6,12 +6,15 @@ import com.pawfectbuddy.repository.RouteRepositoryInterface;
 import com.pawfectbuddy.service.RouteServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+/**
+ * RouteService has access to RouteRepository for performing various CRUD methods upon a request from client
+ * @author Xenia Levit
+ */
 
 @Service
 public class RouteServiceImpl implements RouteServiceInterface {

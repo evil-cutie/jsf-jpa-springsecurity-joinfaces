@@ -5,9 +5,13 @@ import com.pawfectbuddy.repository.AnimalRepositoryInterface;
 import com.pawfectbuddy.service.AnimalServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * AnimalService has access to AnimalRepository for performing various CRUD methods upon a request from client
+ * @author Xenia Levit
+ */
 
 @Service
 public class AnimalServiceImpl implements AnimalServiceInterface {
