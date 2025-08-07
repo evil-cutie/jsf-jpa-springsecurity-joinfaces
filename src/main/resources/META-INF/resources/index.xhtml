@@ -20,12 +20,13 @@
             <h:form styleClass="flex flex-shrink-1 align-self-end">
                 <div class="flex">
                     <p:selectCheckboxMenu id="animal"
-                                          dynamic="true"
+                                          dynamic="true" multiple="false"
                                           filter="true" filterMatchMode="startsWith"
-                                          label="Animal type" updateLabel="true" showSelectAll="false"
+                                          label="Animal type" updateLabel="true"
                                           style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
                                           value="#{tableMB.selectedAnimals}"
                                           styleClass="mr-2">
+                        <p:ajax event="toggleSelect" listener="#{tableMB.onToggleSelect}" update="form"/>
                         <p:ajax event="itemSelect" listener="#{tableMB.onItemSelect}" update="form"/>
                         <p:ajax event="itemUnselect" listener="#{tableMB.onItemUnselect}" update="form"/>
                         <f:selectItems value="#{tableMB.animals}"/>
@@ -33,9 +34,10 @@
                     <p:selectCheckboxMenu id="city"
                                           dynamic="true"
                                           filter="true" filterMatchMode="startsWith"
-                                          label="City" updateLabel="true" showSelectAll="false"
+                                          label="City" updateLabel="true"
                                           style="width: 15rem" panelStyle="width: 15rem" scrollHeight="250"
                                           value="#{tableMB.selectedCities}">
+                        <p:ajax event="toggleSelect" listener="#{tableMB.onToggleSelect}" update="form"/>
                         <p:ajax event="itemSelect" listener="#{tableMB.onItemSelect}" update="form"/>
                         <p:ajax event="itemUnselect" listener="#{tableMB.onItemUnselect}" update="form"/>
                         <f:selectItems value="#{tableMB.cities}"/>

@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
       xmlns:p="primefaces">
 
 <h:head>
-    <title>Login</title>
+    <title>Redirect</title>
+    <link rel="shortcut icon" href="#{request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="mobile-web-app-capable" content="yes"/>
     <h:outputStylesheet library="webjars" name="primeflex/4.0.0/primeflex.min.css"/>
     <h:outputStylesheet library="assets" name="css/primeicons.css"/>
+    <h:outputStylesheet library="assets" name="css/reset.css"/>
+    <h:outputStylesheet library="assets" name="css/custom.css"/>
 </h:head>
 
 <h:body style="font-family: var(--font-family);">
     <div class="redirect">
         <div class="flex align-items-center justify-content-center">
             <div class="flex flex-column">
-                <div class="mt-6 font-bold text-5xl text-orange-500 text-center">
+                <div class="mt-6 font-bold text-5xl text-500 text-center">
                     All done!
                 </div>
                 <div class="mt-2 mb-5 text-2xl text-600 text-center">

@@ -4,6 +4,7 @@ body .ui-dataview .ui-dataview-header {
 
 .redirect {
     background: #fbfbfb;
+    height: 100vh;
 }
 
 .ui-password {

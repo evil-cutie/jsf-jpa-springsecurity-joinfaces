@@ -11,6 +11,7 @@ import jakarta.faces.view.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleSelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +143,10 @@ public class ListingView implements Serializable {
         String item = event.getObject().toString();
         selectedAnimals.remove(item);
         selectedCities.remove(item);
+    }
+
+    public void onToggleSelect(ToggleSelectEvent event) {
+        System.out.println("toggle selected");
     }
 
 }
