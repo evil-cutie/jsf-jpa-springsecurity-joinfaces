@@ -36,6 +36,57 @@ public class RegistrationTest {
         assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
     }
 
+    @Test
+    public void newUserCantRegisterWithInvalidEmail() {
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        page.navigate("http://localhost:8080/registration.xhtml");
+        fillRegistrationForm("test_" + id, "user_" + id, "12345", "12345");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
+        assertThat(page.getByText("Invalid email format")).isVisible();
+        assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
+    }
+
+    @Test
+    public void newUserCantRegisterWithInvalidUsername() {
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        page.navigate("http://localhost:8080/registration.xhtml");
+        fillRegistrationForm("test_" + id + "@example.test", "ab", "12345", "12345");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
+        assertThat(page.getByText("Required username length is 3-50")).isVisible();
+        assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
+    }
+
+    @Test
+    public void newUserCantRegisterWithoutPassword() {
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        page.navigate("http://localhost:8080/registration.xhtml");
+        fillRegistrationForm("test_" + id + "@example.test", "test_" + id, "", "");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
+        Locator errors = page.locator("#message").getByText("Password is required", new Locator.GetByTextOptions().setExact(true));
+        assertThat(errors).hasCount(2);
+        assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
+    }
+
+    @Test
+    public void newUserCantRegisterWithoutUsername() {
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        page.navigate("http://localhost:8080/registration.xhtml");
+        fillRegistrationForm("test_" + id + "@example.test", "", "12345", "12345");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
+        assertThat(page.getByText("Username is required").first()).isVisible();
+        assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
+    }
+
+    @Test
+    public void newUserCantRegisterWithoutEmail() {
+        String id = UUID.randomUUID().toString().substring(0, 8);
+        page.navigate("http://localhost:8080/registration.xhtml");
+        fillRegistrationForm("", "test_" + id, "12345", "12345");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
+        assertThat(page.getByText("Email is required").first()).isVisible();
+        assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
+    }
+
     private void fillRegistrationForm(String email, String username, String password, String repeatPassword) {
         page.getByLabel("Email", new Page.GetByLabelOptions().setExact(true)).fill(email);
         page.getByLabel("Username", new Page.GetByLabelOptions().setExact(true)).fill(username);
