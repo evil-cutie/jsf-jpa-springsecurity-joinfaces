@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class LoginTest {
-    Playwright playwright;
-    Page page;
+    private Playwright playwright;
+    private Page page;
+
     @BeforeEach
     public void setUp() {
         playwright = Playwright.create();
