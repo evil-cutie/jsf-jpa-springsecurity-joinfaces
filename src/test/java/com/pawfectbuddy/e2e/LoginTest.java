@@ -31,6 +31,8 @@ public class LoginTest {
         fillLoginForm("no_such_user", "pass123");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")).click();
         assertThat(page).hasURL("http://localhost:8080/login.xhtml?error=true");
+        page.navigate("http://localhost:8080/profile.xhtml");
+        assertThat(page).hasURL("http://localhost:8080/login.xhtml");
     }
 
     @Test
@@ -39,6 +41,8 @@ public class LoginTest {
         fillLoginForm("test_usr", "invalid_password");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")).click();
         assertThat(page).hasURL("http://localhost:8080/login.xhtml?error=true");
+        page.navigate("http://localhost:8080/profile.xhtml");
+        assertThat(page).hasURL("http://localhost:8080/login.xhtml");
     }
 
     @Test
@@ -48,6 +52,8 @@ public class LoginTest {
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")).click();
         assertThat(page.getByText("Username is required")).isVisible();
         assertThat(page.getByText("Password is required")).isVisible();
+        assertThat(page).hasURL("http://localhost:8080/login.xhtml");
+        page.navigate("http://localhost:8080/profile.xhtml");
         assertThat(page).hasURL("http://localhost:8080/login.xhtml");
     }
 
