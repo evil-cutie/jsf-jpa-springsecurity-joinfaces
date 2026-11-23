@@ -13,7 +13,7 @@ public class RegistrationTest {
     @BeforeEach
     public void setUp() {
         playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         page = browser.newPage();
     }
 
@@ -73,7 +73,8 @@ public class RegistrationTest {
         page.navigate("http://localhost:8080/registration.xhtml");
         fillRegistrationForm("test_" + id + "@example.test", "", "12345", "12345");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
-        assertThat(page.getByText("Username is required").first()).isVisible();
+        Locator usernameError = page.locator("#message").getByText("Username is required");
+        assertThat(usernameError).isVisible();
         assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
     }
 
@@ -83,7 +84,8 @@ public class RegistrationTest {
         page.navigate("http://localhost:8080/registration.xhtml");
         fillRegistrationForm("", "test_" + id, "12345", "12345");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign up")).click();
-        assertThat(page.getByText("Email is required").first()).isVisible();
+        Locator emailError = page.locator("#message").getByText("Email is required");
+        assertThat(emailError).isVisible();
         assertThat(page).hasURL("http://localhost:8080/registration.xhtml");
     }
 
